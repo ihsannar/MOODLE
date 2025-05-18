@@ -159,7 +159,8 @@
   <section id="quiz-link">
     <h2>📝 Osmanlı Quizi</h2>
     <p>Osmanlı tarihiyle ilgili bilgini test etmek ister misin? Aşağıdaki butona tıklayarak mini quize katılabilirsin.</p>
-    <a class="btn" href="quiz.html">Quizi Başlat</a>
+    <a class="btn" href="/MOODLE/quiz.html">Quizi Başlat</a>
+
   </section>
 
   <section>
@@ -182,7 +183,8 @@
       const now = new Date();
       const tarih = now.toLocaleDateString('tr-TR');
       const saat = now.toLocaleTimeString('tr-TR');
-      document.getElementById("saat-tarih").textContent = ${tarih} ${saat};
+      document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+
     }
 
     setInterval(tarihSaatGuncelle, 1000);
