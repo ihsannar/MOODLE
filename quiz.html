@@ -155,7 +155,8 @@
     s.secenekler.forEach((secenek, i) => {
      html += `<label><input type="radio" name="answer" value="${i}"> ${secenek}</label>`;
     });
-    html += </div></div>;
+   html += `</div></div>`;
+
     questionArea.innerHTML = html;
   }
 
@@ -188,7 +189,8 @@
 
       // Geri dön butonuna tıklama olayını ekle
       document.getElementById("geri-btn").addEventListener("click", () => {
-        window.location.href = "tarih.html";
+        window.location.href = "/MOODLE/tarih.html";
+
       });
     }
   });
