@@ -200,7 +200,8 @@
     const now = new Date();
     const tarih = now.toLocaleDateString('tr-TR');
     const saat = now.toLocaleTimeString('tr-TR');
-    document.getElementById("saat-tarih").textContent = ${tarih} ${saat};
+    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+
   }
   setInterval(tarihSaatGuncelle, 1000);
   tarihSaatGuncelle();
