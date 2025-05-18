@@ -153,7 +153,7 @@
                   <h3>${s.soru}</h3>
                   <div class="answers">`;
     s.secenekler.forEach((secenek, i) => {
-      html += <label><input type="radio" name="answer" value="${i}"> ${secenek}</label>;
+     html += `<label><input type="radio" name="answer" value="${i}"> ${secenek}</label>`;
     });
     html += </div></div>;
     questionArea.innerHTML = html;
