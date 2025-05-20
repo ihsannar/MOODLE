@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil Sayfası</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .profile-info label {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .profile-info input,
+    .profile-info textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .profile-info button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .profile-info button:hover {
+      background-color: #34495e;
+    }
+
+    .profile-pic {
+      text-align: center;
+    }
+
+    .profile-pic img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #2c3e50;
+    }
+
+    .avatar-selection {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-selection img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      object-fit: cover;
+    }
+
+    .avatar-selection img:hover {
+      border-color: #2c3e50;
+    }
+
+    #saat-tarih {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 14px;
+      z-index: 999;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    #son-giris {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div id="saat-tarih"></div>
+
+<div class="container">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+      <img src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Kullanıcı Fotoğrafı" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #2c3e50;">
+      <h1 style="margin: 0;">Hoş geldin, <span id="kullanici-adi">Ali Veli</span>!</h1>
+    </div>
+    <h2 style="text-align:center; color:#2c3e50; cursor: pointer; font-size: 16px; margin-top: 15px;" onclick="toggleAvatarSection()">Avatar Seçimi (Göster / Gizle)</h2>
+  </div>
+  <div class="avatar-selection" id="avatar-section" style="display: none; transform: scale(0.8); padding: 10px; border: 1px solid #ccc; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+    <img src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" onclick="selectAvatar(this.src)" alt="Avatar A">
+    <img src="https://i.ibb.co/zn6dkCK/osmanli1.jpg" onclick="selectAvatar(this.src)" alt="Avatar 1">
+    <img src="https://i.ibb.co/gzLV91s/osmanli2.jpg" onclick="selectAvatar(this.src)" alt="Avatar 2">
+    <img src="https://i.ibb.co/LrYnRRH/osmanli3.jpg" onclick="selectAvatar(this.src)" alt="Avatar 3">
+    <img src="https://i.ibb.co/Y8rLMZk/osmanli4.jpg" onclick="selectAvatar(this.src)" alt="Avatar 4">
+    <img src="https://i.ibb.co/2YtSy90/osmanli5.jpg" onclick="selectAvatar(this.src)" alt="Avatar 5">
+    <img src="https://i.ibb.co/MZGV8r4/osmanli6.jpg" onclick="selectAvatar(this.src)" alt="Avatar 6">
+  </div>
+</div>
+</div>
+
+<div id="son-giris"></div>
+
+  <div class="profile-info">
+    <label for="ad">Ad Soyad:</label>
+    <input type="text" id="ad" value="Ali Veli">
+
+    <label for="email">E-posta:</label>
+    <input type="email" id="email" value="ali@example.com">
+
+    <label for="okul">Okul:</label>
+    <input type="text" id="okul" value="Bilkent Üniversitesi">
+
+    <label for="motto">Mottom:</label>
+    <input type="text" id="motto" placeholder="Hayata dair bir söz...">
+
+    <label for="hakkinda">Hakkımda:</label>
+    <textarea id="hakkinda" rows="5" placeholder="Kendinizi kısaca tanıtın..."></textarea>
+
+    <button onclick="alert('Profil bilgileri kaydedildi!')">Kaydet</button>
+  </div>
+</div>
+
+<script>
+  function tarihSaatGuncelle() {
+    const now = new Date();
+    const tarih = now.toLocaleDateString('tr-TR');
+    const saat = now.toLocaleTimeString('tr-TR');
+    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+    localStorage.setItem("sonGiris", `${tarih} ${saat}`);
+    document.getElementById("son-giris").textContent = `Son giriş: ${localStorage.getItem("sonGiris")}`;
+  }
+
+  function loadPhoto(event) {
+    const output = document.getElementById('pp');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  }
+
+  function selectAvatar(src) {
+    const pp = document.getElementById('pp');
+    pp.src = src;
+  }
+
+  setInterval(tarihSaatGuncelle, 1000);
+  tarihSaatGuncelle();
+
+  function toggleAvatarSection() {
+    const section = document.getElementById('avatar-section');
+    section.style.display = section.style.display === 'none' ? 'flex' : 'none';
+  }
+</script>
+
+</body>
+</html>
