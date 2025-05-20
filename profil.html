@@ -20,11 +20,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
     .profile-info {
       display: flex;
       flex-direction: column;
@@ -57,19 +52,6 @@
 
     .profile-info button:hover {
       background-color: #34495e;
-    }
-
-    .profile-pic {
-      text-align: center;
-    }
-
-    .profile-pic img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-      border: 3px solid #2c3e50;
     }
 
     .avatar-selection {
@@ -122,26 +104,24 @@
 <div class="container">
   <div style="display: flex; flex-direction: column; align-items: center;">
     <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-      <img src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Kullanıcı Fotoğrafı" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #2c3e50;">
+      <img id="pp" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Kullanıcı Fotoğrafı" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #2c3e50;">
       <h1 style="margin: 0;">Hoş geldin, <span id="kullanici-adi">Ali Veli</span>!</h1>
     </div>
     <h2 style="text-align:center; color:#2c3e50; cursor: pointer; font-size: 16px; margin-top: 15px;" onclick="toggleAvatarSection()">Avatar Seçimi (Göster / Gizle)</h2>
   </div>
-  <div class="avatar-selection" id="avatar-section" style="display: none; transform: scale(0.8); padding: 10px; border: 1px solid #ccc; border-radius: 8px; max-width: 600px; margin: 0 auto;">
-    <img src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" onclick="selectAvatar(this.src)" alt="avatar A">
-  
-<img src="avatarlar/118617463_199983294883576_7963058730969224495_n.jpg" alt="Avatar">
-<img src="avatarlar/129585091_234127638135808_3304341794957897325_n.png" alt="Avatar">
-<img src="avatarlar/129634821_235040854711153_9126802092523282541_n.png" alt="Avatar">
-<img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20204304.png" alt="Avatar">
-<img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20210554.png" alt="Avatar">
 
+  <div class="avatar-selection" id="avatar-section" style="display: none; transform: scale(0.8); padding: 10px; border: 1px solid #ccc; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+    <img src="avatarlar/118617463_199983294883576_7963058730969224495_n.jpg" onclick="selectAvatar(this.src)" alt="Avatar">
+    <img src="avatarlar/129585091_234127638135808_3304341794957897325_n.png" onclick="selectAvatar(this.src)" alt="Avatar">
+    <img src="avatarlar/129634821_235040854711153_9126802092523282541_n.png" onclick="selectAvatar(this.src)" alt="Avatar">
+    <img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20204304.png" onclick="selectAvatar(this.src)" alt="Avatar">
+    <img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20210554.png" onclick="selectAvatar(this.src)" alt="Avatar">
   </div>
-</div>
 </div>
 
 <div id="son-giris"></div>
 
+<div class="container">
   <div class="profile-info">
     <label for="ad">Ad Soyad:</label>
     <input type="text" id="ad" value="Ali Veli">
@@ -172,23 +152,18 @@
     document.getElementById("son-giris").textContent = `Son giriş: ${localStorage.getItem("sonGiris")}`;
   }
 
-  function loadPhoto(event) {
-    const output = document.getElementById('pp');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  }
-
   function selectAvatar(src) {
     const pp = document.getElementById('pp');
     pp.src = src;
   }
 
-  setInterval(tarihSaatGuncelle, 1000);
-  tarihSaatGuncelle();
-
   function toggleAvatarSection() {
     const section = document.getElementById('avatar-section');
     section.style.display = section.style.display === 'none' ? 'flex' : 'none';
   }
+
+  setInterval(tarihSaatGuncelle, 1000);
+  tarihSaatGuncelle();
 </script>
 
 </body>
