@@ -24,13 +24,23 @@
       padding: 20px;
       color: white;
       position: fixed;
+      left: 0;
+      top: 0;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.closed {
+      transform: translateX(-100%);
     }
 
     .sidebar h2 {
-      margin-bottom: 30px;
-      font-size: 22px;
-      text-align: center;
-    }
+  margin-top: 60px; /* Menü butonuna çarpmaması için yukarıdan boşluk bırak */
+  margin-bottom: 30px;
+  font-size: 22px;
+  text-align: center;
+}
+
 
     .sidebar a {
       display: block;
@@ -46,12 +56,31 @@
       background-color: #34495e;
     }
 
+    /* Toggle Button */
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
     /* Main Content */
     .main-content {
       margin-left: 240px;
       padding: 30px;
       flex: 1;
+      transition: margin-left 0.3s ease;
     }
+
+    .main-content.shifted {
+  margin-left: 80px; 
+}
 
     .course-grid {
       display: grid;
@@ -109,23 +138,27 @@
 </head>
 <body>
 
+  <!-- Toggle Button -->
+  <button class="toggle-btn" onclick="toggleSidebar()">☰ Menü</button>
+
   <!-- Saat-Tarih Kutusu -->
   <div id="saat-tarih"></div>
 
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <h2>Öğrenci Paneli</h2>
     <a href="#">Dersler</a>
-    <a href="#">Ödevler</a>
+    <a href="odev.html">Ödevler ve Alıştırmalar</a> 
     <a href="#">Notlar</a>
-    <a href="duyurular.html">Duyurular</a>
-    <a href="profil.html">Profil</a>
+    <a href="#">Duyurular</a>
+    <a href="#">Profil</a>
     <a href="#">Dönütler</a>
     <a href="#">Ayarlar</a>
+    <a href="index.html">Çıkış Yap</a>
   </div>
 
   <!-- Main Content -->
-  <div class="main-content">
+  <div class="main-content" id="mainContent">
     <h1>Hoş Geldiniz</h1>
     <p>Derslerinizi aşağıdan seçebilirsiniz:</p>
 
@@ -133,38 +166,36 @@
       <div class="course">
         <h3>Tarih</h3>
         <p>Tarihteki Türk Devletleri, kuruluşları ve yıkılışları.</p>
-        <a href="/MOODLE/tarih.html">Derse Git</a>
-
+        <a href="buzkıran.html">Derse Git</a>
       </div>
 
       <div class="course">
         <h3>Matematik</h3>
         <p>Fonksiyonlar, denklemler, integral ve daha fazlası.</p>
-        <a href="/MOODLE/matematik.html">Derse Git</a>
-
+        <a href="#">Derse Git</a>
       </div>
 
       <div class="course">
         <h3>Fizik</h3>
         <p>Hareket, kuvvet, enerji ve modern fizik konuları.</p>
-        <a href="fizik.html">Derse Git</a>
+        <a href="#">Derse Git</a>
       </div>
 
       <div class="course">
         <h3>Türk Dili</h3>
         <p>Yazım kuralları, dil bilgisi ve edebiyat örnekleri.</p>
-        <a href="turkdili.html">Derse Git</a>
+        <a href="#">Derse Git</a>
       </div>
 
       <div class="course">
         <h3>Yapay Zeka</h3>
         <p>Makine öğrenimi, algoritmalar ve uygulamalar.</p>
-        <a href="yapayzeka.html">Derse Git</a>
+        <a href="#">Derse Git</a>
       </div>
     </div>
   </div>
 
-  <!-- JavaScript: Saat ve Tarih -->
+  <!-- JavaScript: Saat ve Tarih + Sidebar Toggle -->
   <script>
     function tarihSaatGuncelle() {
       const now = new Date();
@@ -174,7 +205,14 @@
     }
 
     setInterval(tarihSaatGuncelle, 1000);
-    tarihSaatGuncelle(); // İlk yükleme
+    tarihSaatGuncelle();
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const main = document.getElementById('mainContent');
+      sidebar.classList.toggle('closed');
+      main.classList.toggle('shifted');
+    }
   </script>
 
 </body>
