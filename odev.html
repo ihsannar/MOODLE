@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ödev 1: Osmanlı'nın Kuruluşu</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; display:flex; height:100vh; background:#f3f3f3; }
+  #sidebar {
+    background:#0073aa; color:white; width:220px; padding:20px; box-sizing:border-box; display: flex; flex-direction: column; gap: 10px;
+  }
+  #homeBtn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s, color 0.3s;
+}
+#homeBtn:hover {
+  background: white;
+  color: #0073aa;
+}
+
+  #sidebar h2 { margin:0 0 10px 0; }
+  #sidebar ul { list-style:none; padding:0; }
+  #sidebar ul li { margin-bottom:15px; }
+  #sidebar ul li a {
+    color:white; text-decoration:none; font-weight:bold; display:block; padding:8px 12px; border-radius:5px;
+  }
+  #sidebar ul li.locked a {
+    opacity:0.5; cursor:not-allowed; pointer-events:none;
+  }
+  #sidebar ul li.active a {
+    background:#005a87;
+  }
+  #content {
+    flex-grow:1; background:white; padding:30px; overflow-y:auto;
+  }
+  button {
+    background:#0073aa; color:white; border:none; border-radius:5px; padding:10px 20px; cursor:pointer; margin-top:15px;
+  }
+  input[type=text] {
+    width: 200px; padding:6px; margin-left:10px; margin-top:5px; border-radius:4px; border:1px solid #ccc;
+    font-size: 1rem;
+  }
+  label.inline-input {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .question {
+    margin-top: 15px;
+    font-size: 1.1rem;
+  }
+  .result {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  #file-upload {
+    margin-top: 15px;
+  }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <a id="homeBtn" href="anasayfa.html">🏠 Anasayfa</a>
+  <h2>Ödevler</h2>
+  <ul>
+    <li class="active"><a href="index.html">Ödev 1</a></li>
+    <li class="locked" id="odev2Li"><a href="odev2.html">Ödev 2 🔒</a></li>
+    <li class="locked"><a href="odev3.html">Ödev 3 🔒</a></li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Ödev 1: Osmanlı'nın Kuruluşu</h1>
+  <p>📌 Ödev Talimatı:</p>
+  <ul>
+    <li>Osmanlı Devleti'nin kuruluş sürecini ve ilk padişahları araştırınız.</li>
+    <li>Kuruluş dönemindeki siyasi, ekonomik ve askeri gelişmeleri inceleyiniz.</li>
+    <li>500-750 kelimelik bir Word belgesi hazırlayınız.</li>
+    <li><strong style="color:red;">Son Teslim Tarihi: 27 Mayıs 2025, Saat 23:59</strong></li>
+  </ul>
+
+  <div id="file-upload">
+    <label for="fileInput">Dosya Gönderme:</label><br>
+    <input type="file" id="fileInput" accept=".doc,.docx,.pdf" />
+  </div>
+
+  <h2>✏ Boşluk Doldurma (5 Soru)</h2>
+  <div class="question">
+    1. <label class="inline-input">Osmanlı Devleti'nin kurucusu <input type="text" id="q1"> Gazi'dir.</label>
+  </div>
+  <div class="question">
+    2. <label class="inline-input">Osmanlılar, <input type="text" id="q2"> Beyliği'nin sınırlarında kurulmuştur.</label>
+  </div>
+  <div class="question">
+    3. <label class="inline-input">İlk başkent <input type="text" id="q3"> şehriydi.</label>
+  </div>
+  <div class="question">
+    4. <label class="inline-input">Osmanlılar, <input type="text" id="q4"> Savaşı ile Bizans'a karşı ilk büyük zaferini kazandı.</label>
+  </div>
+  <div class="question">
+    5. <label class="inline-input">Osmanlı’nın ilk sultanlarından biri <input type="text" id="q5"> Gazi'dir.</label>
+  </div>
+  <button onclick="checkFillIn()">Cevapları Kontrol Et</button>
+  <div id="fillinResult" class="result"></div>
+
+  <h2>✔ Doğru / Yanlış (5 Soru)</h2>
+  <div class="question">1. Osman Gazi, Osmanlı Devleti’nin ikinci padişahıdır.
+    <label><input type="radio" name="dq1" value="true"> Doğru</label>
+    <label><input type="radio" name="dq1" value="false"> Yanlış</label>
+  </div>
+
+  <div class="question">2. Osmanlı Devleti Anadolu'da kurulmuştur.
+    <label><input type="radio" name="dq2" value="true"> Doğru</label>
+    <label><input type="radio" name="dq2" value="false"> Yanlış</label>
+  </div>
+
+  <div class="question">3. Osmanlılar ilk başta sadece deniz gücünü dayanyordu.
+    <label><input type="radio" name="dq3" value="true"> Doğru</label>
+    <label><input type="radio" name="dq3" value="false"> Yanlış</label>
+  </div>
+
+  <div class="question">4. Osmanlılar ilk büyük zaferini Bizans’a karşı kazandı.
+    <label><input type="radio" name="dq4" value="true"> Doğru</label>
+    <label><input type="radio" name="dq4" value="false"> Yanlış</label>
+  </div>
+
+  <div class="question">5. Bursa, Osmanlı'nın ilk başkentiydi.
+    <label><input type="radio" name="dq5" value="true"> Doğru</label>
+    <label><input type="radio" name="dq5" value="false"> Yanlış</label>
+  </div>
+  <button onclick="checkTrueFalse()">Cevapları Kontrol Et</button>
+  <div id="tfResult" class="result"></div>
+
+  <button id="submitOdev1">Ödev 1 Gönder</button>
+</div>
+
+<script>
+  const fillAnswers = ['Osman', 'Beylik', 'Bursa', 'Maltepe', 'Orhan'];
+  const tfAnswers = {
+    dq1: false,
+    dq2: true,
+    dq3: false,
+    dq4: true,
+    dq5: true
+  };
+
+  function checkFillIn() {
+    let correct = 0;
+    for(let i=1; i<=5; i++) {
+      const val = document.getElementById('q'+i).value.trim();
+      if(val.toLowerCase() === fillAnswers[i-1].toLowerCase()) correct++;
+    }
+    const result = Boşluk doldurma: ${correct} / 5 doğru. Doğrular: <br> +
+      1. Osman<br> +
+      2. Beylik<br> +
+      3. Bursa<br> +
+      4. Maltepe<br> +
+      5. Orhan<br>;
+    document.getElementById('fillinResult').innerHTML = result;
+  }
+
+  function checkTrueFalse() {
+    let correct = 0;
+    let wrongAnswers = [];
+
+    for(let i=1; i<=5; i++) {
+      const radios = document.getElementsByName('dq'+i);
+      let selected = null;
+      for (const r of radios) {
+        if(r.checked) selected = r.value === 'true';
+      }
+      if(selected === null) {
+        alert(Lütfen ${i}. soruyu işaretleyiniz.);
+        return;
+      }
+      if(selected === tfAnswers['dq'+i]) {
+        correct++;
+      } else {
+        const dogruMu = tfAnswers['dq'+i] ? 'Doğru' : 'Yanlış';
+        wrongAnswers.push(${i}. soru: Doğru cevap "${dogruMu}");
+      }
+    }
+
+    let resultText = Doğru/Yanlış: ${correct} / 5 doğru.;
+    if(wrongAnswers.length > 0) {
+      resultText += '<br><br>Yanlış verilen soruların doğruları:<br>' + wrongAnswers.join('<br>');
+    }
+    document.getElementById('tfResult').innerHTML = resultText;
+  }
+
+  const ls = localStorage;
+  const odev1Sent = ls.getItem('odev1Sent') === 'true';
+  const odev2Li = document.getElementById('odev2Li');
+
+  if (odev1Sent) {
+    odev2Li.classList.remove('locked');
+    const link = odev2Li.querySelector('a');
+    link.textContent = 'Ödev 2';
+  }
+
+  document.getElementById('submitOdev1').onclick = () => {
+    const fileInput = document.getElementById('fileInput');
+    if(fileInput.files.length === 0) {
+      alert('Lütfen önce dosya yükleyiniz.');
+      return;
+    }
+    alert('Ödev 1 başarıyla gönderildi!');
+    ls.setItem('odev1Sent', 'true');
+    odev2Li.classList.remove('locked');
+    const link = odev2Li.querySelector('a');
+    link.textContent = 'Ödev 2';
+  }
+</script>
+
+</body>
+</html>
