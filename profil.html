@@ -154,7 +154,9 @@
 
   function selectAvatar(src) {
     const pp = document.getElementById('pp');
-    pp.src = src;
+    if (pp) {
+      pp.src = src;
+    }
   }
 
   function toggleAvatarSection() {
