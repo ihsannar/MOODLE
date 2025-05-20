@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Osmanlı Quizi</title>
   <style>
     body {
@@ -38,7 +38,7 @@
       margin-bottom: 10px;
     }
 
-    #next-btn {
+    #next-btn, #enter-system-btn {
       padding: 10px 20px;
       font-size: 16px;
       background-color: #2c3e50;
@@ -46,9 +46,10 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 20px;
     }
 
-    #next-btn:hover {
+    #next-btn:hover, #enter-system-btn:hover {
       background-color: #34495e;
     }
 
@@ -57,6 +58,20 @@
       font-size: 20px;
       color: green;
       margin-top: 20px;
+    }
+
+    #review-container {
+      margin-top: 30px;
+    }
+
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+
+    .incorrect {
+      color: red;
+      font-weight: bold;
     }
 
     /* Tarih Saat */
@@ -84,6 +99,7 @@
   <div id="question-area"></div>
   <button id="next-btn">İleri</button>
   <div id="result"></div>
+  <div id="review-container"></div>
 </div>
 
 <script>
@@ -141,11 +157,12 @@
   ];
 
   let soruIndex = 0;
-  let dogruSayisi = 0;
+  let cevaplar = [];
 
   const questionArea = document.getElementById("question-area");
   const nextBtn = document.getElementById("next-btn");
   const resultDiv = document.getElementById("result");
+  const reviewContainer = document.getElementById("review-container");
 
   function soruGoster() {
     const s = sorular[soruIndex];
@@ -153,10 +170,9 @@
                   <h3>${s.soru}</h3>
                   <div class="answers">`;
     s.secenekler.forEach((secenek, i) => {
-     html += `<label><input type="radio" name="answer" value="${i}"> ${secenek}</label>`;
+      html += <label><input type="radio" name="answer" value="${i}"> ${secenek}</label>;
     });
-   html += `</div></div>`;
-
+    html += </div></div>;
     questionArea.innerHTML = html;
   }
 
@@ -168,29 +184,47 @@
     }
 
     const cevap = parseInt(secilen.value);
-    if (cevap === sorular[soruIndex].dogru) {
-      dogruSayisi++;
-    }
+    cevaplar.push(cevap);
 
     soruIndex++;
 
     if (soruIndex < sorular.length) {
       soruGoster();
     } else {
+      // Quiz bitti, sonucu ve incelemeyi göster
       questionArea.innerHTML = "";
       nextBtn.style.display = "none";
-      resultDiv.innerHTML = `
-        Quiz tamamlandı! Doğru sayınız: ${dogruSayisi} / ${sorular.length}
-        <br><br>
-        <button id="geri-btn" style="padding:10px 20px; font-size:16px; background-color:#2c3e50; color:white; border:none; border-radius:5px; cursor:pointer;">
-          Geri Dön
-        </button>
-      `;
+      resultDiv.innerHTML = <strong>Quiz tamamlandı!</strong><br>;
 
-      // Geri dön butonuna tıklama olayını ekle
-      document.getElementById("geri-btn").addEventListener("click", () => {
-        window.location.href = "/MOODLE/tarih.html";
+      let dogruSayisi = 0;
+      let reviewHtml = '';
 
+      sorular.forEach((soru, i) => {
+        const kullaniciCevap = cevaplar[i];
+        const dogruCevap = soru.dogru;
+
+        reviewHtml += <div class="question-box">;
+        reviewHtml += <h3>${soru.soru}</h3>;
+
+        if (kullaniciCevap === dogruCevap) {
+          dogruSayisi++;
+          reviewHtml += <p class="correct">Cevabınız doğru, tebrikler! (${soru.secenekler[kullaniciCevap]})</p>;
+        } else {
+          reviewHtml += <p class="incorrect">Yanlış cevap. Doğru cevap: ${soru.secenekler[dogruCevap]}</p>;
+          reviewHtml += <p>Verdiğiniz cevap: ${soru.secenekler[kullaniciCevap]}</p>;
+        }
+
+        reviewHtml += </div>;
+      });
+
+      reviewHtml += <hr><p><strong>Toplam Doğru Sayısı: ${dogruSayisi} / ${sorular.length}</strong></p>;
+      reviewHtml += <button id="enter-system-btn">Sisteme Giriş</button>;
+
+      reviewContainer.innerHTML = reviewHtml;
+
+      // Sisteme Giriş butonuna tıklama
+      document.getElementById("enter-system-btn").addEventListener("click", () => {
+        window.location.href = "anasayfa.html";
       });
     }
   });
@@ -202,8 +236,7 @@
     const now = new Date();
     const tarih = now.toLocaleDateString('tr-TR');
     const saat = now.toLocaleTimeString('tr-TR');
-    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
-
+    document.getElementById("saat-tarih").textContent = ${tarih} ${saat};
   }
   setInterval(tarihSaatGuncelle, 1000);
   tarihSaatGuncelle();
