@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Duyurular</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .duyuru {
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-left: 6px solid #2980b9;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    .duyuru h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .duyuru p {
+      margin-bottom: 5px;
+    }
+
+    #saat-tarih {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 14px;
+      z-index: 999;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div id="saat-tarih"></div>
+
+<div class="container">
+  <h1>Duyurular</h1>
+
+  <div class="duyuru">
+    <h3>📅 Vize Haftası Başlıyor</h3>
+    <p><strong>Tarih:</strong> 3 Haziran 2025</p>
+    <p>Vize sınavları 3-7 Haziran tarihleri arasında gerçekleşecektir. Tüm öğrencilere başarılar dileriz.</p>
+  </div>
+
+  <div class="duyuru">
+    <h3>📢 Yeni Ödev Eklendi</h3>
+    <p><strong>Tarih:</strong> 28 Mayıs 2025</p>
+    <p>Tarih dersi için yeni ödev Moodle sistemine yüklenmiştir. Son teslim tarihi: 2 Haziran.</p>
+  </div>
+
+  <div class="duyuru">
+    <h3>🚧 Sistem Bakımı</h3>
+    <p><strong>Tarih:</strong> 31 Mayıs 2025</p>
+    <p>31 Mayıs gecesi saat 00:00-04:00 arası sistem bakımı yapılacaktır. Bu süre zarfında erişim sağlanamayabilir.</p>
+  </div>
+</div>
+
+<script>
+  function tarihSaatGuncelle() {
+    const now = new Date();
+    const tarih = now.toLocaleDateString('tr-TR');
+    const saat = now.toLocaleTimeString('tr-TR');
+    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+  }
+
+  setInterval(tarihSaatGuncelle, 1000);
+  tarihSaatGuncelle();
+</script>
+
+</body>
+</html>
