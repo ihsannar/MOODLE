@@ -16,6 +16,11 @@
      display: flex;
    }
 
+   body.dark-mode {
+     background-color: #181a1b;
+     color: #f5f5f5;
+   }
+
    .sidebar {
      width: 220px;
      background-color: #2c3e50;
@@ -27,6 +32,10 @@
      top: 0;
      transition: transform 0.3s ease;
      z-index: 1000;
+   }
+
+   body.dark-mode .sidebar {
+     background-color: #1c1f21;
    }
 
    .sidebar.closed {
@@ -105,6 +114,11 @@
      transition: transform 0.2s;
    }
 
+   body.dark-mode .course {
+     background-color: #2a2d2f;
+     color: white;
+   }
+
    .course:hover {
      transform: scale(1.02);
    }
@@ -117,12 +131,20 @@
      color: #555;
    }
 
+   body.dark-mode .course p {
+     color: #ccc;
+   }
+
    .course a {
      display: inline-block;
      margin-top: 10px;
      text-decoration: none;
      color: #0073aa;
      font-weight: bold;
+   }
+
+   body.dark-mode .course a {
+     color: #4db8ff;
    }
 
    .course a:hover {
@@ -172,6 +194,11 @@
      overflow: hidden;
    }
 
+   body.dark-mode #chat-box {
+     background-color: #1e1e1e;
+     color: white;
+   }
+
    #chat-box.hidden {
      display: none;
    }
@@ -202,8 +229,10 @@
 <!-- Menü Butonu -->
 <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
+<!-- Saat-Tarih -->
 <div id="saat-tarih"></div>
 
+<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-avatar">
     <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
@@ -219,6 +248,7 @@
   <a href="index.html">Çıkış Yap</a>
 </div>
 
+<!-- Ana İçerik -->
 <div class="main-content" id="mainContent">
   <h1>Hoş Geldiniz</h1>
   <p>Derslerinizi aşağıdan seçebilirsiniz:</p>
@@ -251,6 +281,7 @@
   </div>
 </div>
 
+<!-- Chatbot -->
 <div id="chatbot-container">
   <div id="chat-toggle" onclick="toggleChat()">🤖 Soru Sor</div>
   <div id="chat-box" class="hidden">
@@ -271,6 +302,9 @@
   tarihSaatGuncelle();
 
   window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+    }
     const savedAvatar = localStorage.getItem("avatar");
     if (savedAvatar) {
       const sidebarAvatar = document.getElementById("sidebar-avatar");
