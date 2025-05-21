@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayarlar</title>
+<style>
+:root {
+--bg-color: #f4f4f4;
+--text-color: #333;
+--container-bg: #fff;
+}
+
+body.dark-mode {
+--bg-color: #1e1e1e;
+--text-color: #f0f0f0;
+--container-bg: #2c2c2c;
+}
+
+body {
+font-family: "Segoe UI", sans-serif;
+background-color: var(--bg-color);
+color: var(--text-color);
+margin: 0;
+padding: 0;
+}
+
+.container {
+max-width: 600px;
+margin: 40px auto;
+background: var(--container-bg);
+padding: 30px;
+border-radius: 16px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+text-align: center;
+margin-bottom: 30px;
+}
+
+.setting-group {
+margin-bottom: 25px;
+}
+
+label {
+font-weight: bold;
+display: block;
+margin-bottom: 8px;
+}
+
+select {
+padding: 10px;
+font-size: 16px;
+width: 100%;
+border-radius: 8px;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+.toggle-label {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 8px;
+}
+
+.toggle-label input[type="checkbox"] {
+width: auto;
+}
+
+.button-group {
+display: flex;
+justify-content: space-between;
+margin-top: 30px;
+}
+
+.btn {
+text-align: center;
+background-color: #007bff;
+color: white;
+border: none;
+padding: 12px 24px;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
+text-decoration: none;
+flex: 1;
+margin: 0 5px;
+transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>🛠️ Ayarlar</h2>
+
+<!-- Tema Seçimi -->
+<div class="setting-group">
+<label for="theme">Tema</label>
+<select id="theme" onchange="applyTheme()">
+<option value="light">Aydınlık Mod</option>
+<option value="dark">Karanlık Mod</option>
+</select>
+</div>
+
+<!-- Dil Seçimi -->
+<div class="setting-group">
+<label for="language">Dil</label>
+<select id="language" onchange="applyLanguage()">
+<option value="tr">Türkçe</option>
+<option value="en">İngilizce</option>
+</select>
+</div>
+
+<!-- Bildirim Ayarı -->
+<div class="setting-group">
+<label for="notifications">Bildirim Ayarı</label>
+<div class="toggle-label">
+<input type="checkbox" id="notifications" checked>
+<span id="notif-label">Bildirimleri Aç</span>
+</div>
+</div>
+
+<!-- E-posta Aboneliği -->
+<div class="setting-group">
+<label for="email-subscription">E-posta Aboneliği</label>
+<div class="toggle-label">
+<input type="checkbox" id="email-subscription">
+<span id="email-label">Haftalık özet e-postası almak istiyorum</span>
+</div>
+</div>
+
+<!-- Parola Değiştir -->
+<div class="setting-group">
+<label>Parola</label>
+<a href="parola_degistir.html" style="color:#007bff; text-decoration:none;">🔒 Parolanı değiştir</a>
+</div>
+
+<!-- Butonlar -->
+<div class="button-group">
+<button class="btn" onclick="saveSettings()">Ayarları Kaydet</button>
+<a href="anasayfa.html" class="btn">Anasayfaya Dön</a>
+</div>
+</div>
+
+<script>
+function applyTheme() {
+const theme = document.getElementById("theme").value;
+document.body.classList.toggle("dark-mode", theme === "dark");
+}
+
+function applyLanguage() {
+const lang = document.getElementById("language").value;
+const notifLabel = document.getElementById("notif-label");
+const emailLabel = document.getElementById("email-label");
+
+if (lang === "en") {
+notifLabel.textContent = "Enable Notifications";
+emailLabel.textContent = "I want to receive weekly summary emails";
+} else {
+notifLabel.textContent = "Bildirimleri Aç";
+emailLabel.textContent = "Haftalık özet e-postası almak istiyorum";
+}
+}
+
+function saveSettings() {
+const theme = document.getElementById("theme").value;
+const lang = document.getElementById("language").value;
+const notifications = document.getElementById("notifications").checked;
+const emailSub = document.getElementById("email-subscription").checked;
+
+localStorage.setItem("theme", theme);
+localStorage.setItem("language", lang);
+localStorage.setItem("notifications", notifications);
+localStorage.setItem("emailSubscription", emailSub);
+
+alert("Ayarlar kaydedildi!");
+}
+
+// Sayfa yüklendiğinde varsayılan tema ve dil ayarını uygula
+window.onload = function() {
+const savedTheme = localStorage.getItem("theme") || "light";
+const savedLang = localStorage.getItem("language") || "tr";
+
+document.getElementById("theme").value = savedTheme;
+document.getElementById("language").value = savedLang;
+
+applyTheme();
+applyLanguage();
+}
+</script>
+
+</body>
+</html>
