@@ -10,15 +10,12 @@
      padding: 0;
    }
 
-
    body {
      font-family: 'Segoe UI', sans-serif;
      background-color: #f0f2f5;
      display: flex;
    }
 
-
-   /* Sidebar */
    .sidebar {
      width: 220px;
      background-color: #2c3e50;
@@ -32,21 +29,16 @@
      z-index: 1000;
    }
 
-
    .sidebar.closed {
      transform: translateX(-100%);
    }
 
-
    .sidebar h2 {
- margin-top: 60px; /* Menü butonuna çarpmaması için yukarıdan boşluk bırak */
- margin-bottom: 30px;
- font-size: 22px;
- text-align: center;
-}
-
-
-
+     margin-top: 60px;
+     margin-bottom: 30px;
+     font-size: 22px;
+     text-align: center;
+   }
 
    .sidebar a {
      display: block;
@@ -58,28 +50,23 @@
      transition: background 0.3s;
    }
 
-
    .sidebar a:hover {
      background-color: #34495e;
    }
 
-
-   /* Toggle Button */
-   .toggle-btn {
-     position: fixed;
-     top: 20px;
-     left: 20px;
-     background-color: #2c3e50;
-     color: white;
-     padding: 10px 15px;
-     border: none;
-     border-radius: 5px;
-     cursor: pointer;
-     z-index: 1100;
+   .sidebar-avatar {
+     text-align: center;
+     margin-bottom: 20px;
    }
 
+   .sidebar-avatar img {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     object-fit: cover;
+     border: 2px solid white;
+   }
 
-   /* Main Content */
    .main-content {
      margin-left: 240px;
      padding: 30px;
@@ -87,18 +74,15 @@
      transition: margin-left 0.3s ease;
    }
 
-
    .main-content.shifted {
- margin-left: 80px;
-}
-
+     margin-left: 80px;
+   }
 
    .course-grid {
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
      gap: 20px;
    }
-
 
    .course {
      background-color: white;
@@ -108,21 +92,17 @@
      transition: transform 0.2s;
    }
 
-
    .course:hover {
      transform: scale(1.02);
    }
-
 
    .course h3 {
      margin-bottom: 10px;
    }
 
-
    .course p {
      color: #555;
    }
-
 
    .course a {
      display: inline-block;
@@ -132,13 +112,10 @@
      font-weight: bold;
    }
 
-
    .course a:hover {
      text-decoration: underline;
    }
 
-
-   /* Saat ve Tarih */
    #saat-tarih {
      position: fixed;
      top: 10px;
@@ -152,20 +129,65 @@
      z-index: 999;
      box-shadow: 0 0 5px rgba(0,0,0,0.2);
    }
+
+   #chatbot-container {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     font-family: 'Segoe UI', sans-serif;
+     z-index: 9999;
+   }
+
+   #chat-toggle {
+     background-color: #0073aa;
+     color: white;
+     padding: 10px 15px;
+     border-radius: 8px;
+     cursor: pointer;
+     text-align: center;
+   }
+
+   #chat-box {
+     margin-top: 10px;
+     width: 300px;
+     background-color: #f4f4f4;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+     display: flex;
+     flex-direction: column;
+     height: 300px;
+     overflow: hidden;
+   }
+
+   #chat-box.hidden {
+     display: none;
+   }
+
+   #chat-log {
+     flex: 1;
+     padding: 10px;
+     overflow-y: auto;
+     font-size: 14px;
+   }
+
+   #chat-log div {
+     margin-bottom: 10px;
+   }
+
+   #chat-input {
+     border: none;
+     border-top: 1px solid #ccc;
+     padding: 10px;
+     font-size: 14px;
+     width: 100%;
+     outline: none;
+   }
  </style>
 </head>
 <body>
 
+<div id="saat-tarih"></div>
 
- <!-- Toggle Button -->
- <button class="toggle-btn" onclick="toggleSidebar()">☰ Menü</button>
-
-
- <!-- Saat-Tarih Kutusu -->
- <div id="saat-tarih"></div>
-
-
- <!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-avatar">
     <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
@@ -181,223 +203,97 @@
   <a href="index.html">Çıkış Yap</a>
 </div>
 
- <!-- Main Content -->
- <div class="main-content" id="mainContent">
-   <h1>Hoş Geldiniz</h1>
-   <p>Derslerinizi aşağıdan seçebilirsiniz:</p>
+<div class="main-content" id="mainContent">
+  <h1>Hoş Geldiniz</h1>
+  <p>Derslerinizi aşağıdan seçebilirsiniz:</p>
 
+  <div class="course-grid">
+    <div class="course">
+      <h3>Tarih</h3>
+      <p>Tarihteki Türk Devletleri, kuruluşları ve yıkılışları.</p>
+      <a href="padlet.html">Derse Git</a>
+    </div>
 
-   <div class="course-grid">
-     <div class="course">
-       <h3>Tarih</h3>
-       <p>Tarihteki Türk Devletleri, kuruluşları ve yıkılışları.</p>
-       <a href="padlet.html">Derse Git</a>
-     </div>
+    <div class="course">
+      <h3>Matematik</h3>
+      <p>Fonksiyonlar, denklemler, integral ve daha fazlası.</p>
+      <a href="#">Derse Git</a>
+    </div>
 
+    <div class="course">
+      <h3>Fizik</h3>
+      <p>Hareket, kuvvet, enerji ve modern fizik konuları.</p>
+      <a href="#">Derse Git</a>
+    </div>
 
-     <div class="course">
-       <h3>Matematik</h3>
-       <p>Fonksiyonlar, denklemler, integral ve daha fazlası.</p>
-       <a href="#">Derse Git</a>
-     </div>
+    <div class="course">
+      <h3>Türk Dili</h3>
+      <p>Yazım kuralları, dil bilgisi ve edebiyat örnekleri.</p>
+      <a href="#">Derse Git</a>
+    </div>
 
+    <div class="course">
+      <h3>Yapay Zeka</h3>
+      <p>Makine öğrenimi, algoritmalar ve uygulamalar.</p>
+      <a href="#">Derse Git</a>
+    </div>
+  </div>
+</div>
 
-     <div class="course">
-       <h3>Fizik</h3>
-       <p>Hareket, kuvvet, enerji ve modern fizik konuları.</p>
-       <a href="#">Derse Git</a>
-     </div>
+<div id="chatbot-container">
+  <div id="chat-toggle" onclick="toggleChat()">🤖 Soru Sor</div>
+  <div id="chat-box" class="hidden">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Bir soru yaz..." onkeydown="if(event.key==='Enter'){sendMessage()}">
+  </div>
+</div>
 
+<script>
+  function tarihSaatGuncelle() {
+    const now = new Date();
+    const tarih = now.toLocaleDateString('tr-TR');
+    const saat = now.toLocaleTimeString('tr-TR');
+    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+  }
 
-     <div class="course">
-       <h3>Türk Dili</h3>
-       <p>Yazım kuralları, dil bilgisi ve edebiyat örnekleri.</p>
-       <a href="#">Derse Git</a>
-     </div>
+  setInterval(tarihSaatGuncelle, 1000);
+  tarihSaatGuncelle();
 
+  function toggleChat() {
+    const chatBox = document.getElementById("chat-box");
+    chatBox.classList.toggle("hidden");
+  }
 
-     <div class="course">
-       <h3>Yapay Zeka</h3>
-       <p>Makine öğrenimi, algoritmalar ve uygulamalar.</p>
-       <a href="#">Derse Git</a>
-     </div>
-   </div>
- </div>
+  function sendMessage() {
+    const input = document.getElementById("chat-input");
+    const log = document.getElementById("chat-log");
+    const userMessage = input.value.trim();
+    if (userMessage === "") return;
+    log.innerHTML += `<div><strong>Sen:</strong> ${userMessage}</div>`;
+    const botResponse = getBotResponse(userMessage.toLowerCase());
+    log.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
+    input.value = "";
+    log.scrollTop = log.scrollHeight;
+  }
 
+  function getBotResponse(message) {
+    if (message.includes("merhaba") || message.includes("selam")) {
+      return "Merhaba! Size nasıl yardımcı olabilirim?";
+    } else if (message.includes("osmanlı") && message.includes("kuruluş")) {
+      return "Osmanlı Devleti 1299 yılında Söğüt'te kurulmuştur.";
+    } else {
+      return "Bu konuda bilgim yok, başka bir şey sorabilir misiniz?";
+    }
+  }
 
- <!-- JavaScript: Saat ve Tarih + Sidebar Toggle -->
- <script>
-   function tarihSaatGuncelle() {
-     const now = new Date();
-     const tarih = now.toLocaleDateString('tr-TR');
-     const saat = now.toLocaleTimeString('tr-TR');
-     document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
-   }
-
-
-   setInterval(tarihSaatGuncelle, 1000);
-   tarihSaatGuncelle();
-
-
-   function toggleSidebar() {
-     const sidebar = document.getElementById('sidebar');
-     const main = document.getElementById('mainContent');
-     sidebar.classList.toggle('closed');
-     main.classList.toggle('shifted');
-   }
- </script>
-
-
- <!-- Chatbot -->
- <div id="chatbot-container">
-   <div id="chat-toggle" onclick="toggleChat()">🤖 Soru Sor</div>
-   <div id="chat-box" class="hidden">
-     <div id="chat-log"></div>
-     <input type="text" id="chat-input" placeholder="Bir soru yaz..." onkeydown="if(event.key==='Enter'){sendMessage()}">
-   </div>
- </div>
-
-
- <style>
-   #chatbot-container {
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     font-family: 'Segoe UI', sans-serif;
-     z-index: 9999;
-   }
-
-
-   #chat-toggle {
-     background-color: #0073aa;
-     color: white;
-     padding: 10px 15px;
-     border-radius: 8px;
-     cursor: pointer;
-     text-align: center;
-   }
-
-
-   #chat-box {
-     margin-top: 10px;
-     width: 300px;
-     background-color: #f4f4f4;
-     border-radius: 10px;
-     box-shadow: 0 0 10px rgba(0,0,0,0.2);
-     display: flex;
-     flex-direction: column;
-     height: 300px;
-     overflow: hidden;
-   }
-
-
-   #chat-box.hidden {
-     display: none;
-   }
-
-
-   #chat-log {
-     flex: 1;
-     padding: 10px;
-     overflow-y: auto;
-     font-size: 14px;
-   }
-
-
-   #chat-log div {
-     margin-bottom: 10px;
-   }
-
-
-   #chat-input {
-     border: none;
-     border-top: 1px solid #ccc;
-     padding: 10px;
-     font-size: 14px;
-     width: 100%;
-     outline: none;
-   }
- </style>
-
-
- <script>
-   function toggleChat() {
-     const chatBox = document.getElementById("chat-box");
-     chatBox.classList.toggle("hidden");
-   }
-
-
-   function sendMessage() {
-     const input = document.getElementById("chat-input");
-     const log = document.getElementById("chat-log");
-     const userMessage = input.value.trim();
-
-
-     if (userMessage === "") return;
-
-
-     log.innerHTML += `<div><strong>Sen:</strong> ${userMessage}</div>`;
-     const botResponse = getBotResponse(userMessage.toLowerCase());
-     log.innerHTML += `<div><strong>Bot:</strong> ${botResponse}</div>`;
-     input.value = "";
-     log.scrollTop = log.scrollHeight;
-   }
-
-
-   function getBotResponse(message) {
-     // Gündelik ve tarih soruları için cevaplar:
-     if (message.includes("merhaba") || message.includes("selam") || message.includes("hey")) {
-       return "Merhaba! Size nasıl yardımcı olabilirim?";
-     }
-     else if (message.includes("nasılsın") || message.includes("ne haber")) {
-       return "İyiyim, teşekkür ederim! Sen nasılsın?";
-     }
-     else if (message.includes("teşekkür") || message.includes("sağol")) {
-       return "Rica ederim, her zaman yardımcı olmaya hazırım!";
-     }
-     else if (message.includes("osmanlı") && message.includes("kuruluş")) {
-       return "Osmanlı Devleti 1299 yılında Söğüt'te kurulmuştur.";
-     }
-     else if (message.includes("ilk padişah") || message.includes("ilk hükümdar")) {
-       return "Osmanlı'nın ilk padişahı Osman Gazi'dir.";
-     }
-     else if (message.includes("ankara savaşı")) {
-       return "Ankara Savaşı 1402 yılında Yıldırım Bayezid ile Timur arasında yapılmıştır.";
-     }
-     else if (message.includes("fetret devri")) {
-       return "Fetret Devri, Ankara Savaşı'ndan sonra 1402-1413 yılları arasında yaşanmıştır.";
-     }
-     else if (message.includes("istanbul")) {
-       return "İstanbul 1453 yılında Fatih Sultan Mehmet tarafından fethedilmiştir.";
-     }
-     else if (message.includes("hava durumu")) {
-       return "Üzgünüm, şu anda güncel hava durumu bilgisine erişemiyorum.";
-     }
-     else if (message.includes("saat kaç") || message.includes("şu an saat")) {
-       const now = new Date();
-       return `Şu an saat: ${now.toLocaleTimeString('tr-TR')}`;
-     }
-     else if (message.includes("bugün tarih") || message.includes("bugün kaç")) {
-       const now = new Date();
-       return `Bugünün tarihi: ${now.toLocaleDateString('tr-TR')}`;
-     }
-     else if (message.includes("adın ne")) {
-       return "Ben buradaki Moodle yardımcınızım, size derslerinizle ilgili sorularda destek olabilirim.";
-     }
-     else if (message.includes("yardım")) {
-       return "Tarih ile ilgili sorular sorabilir ya da gündelik konularda bana soru sorabilirsiniz.";
-     }
-     else {
-       return "Bu konuda bilgim yok, lütfen başka bir soru sorabilir misiniz?";
-     }
-   }
- </script>
-
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedAvatar = localStorage.getItem("avatar");
+    if (savedAvatar) {
+      const sidebarAvatar = document.getElementById("sidebar-avatar");
+      if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+    }
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
-
