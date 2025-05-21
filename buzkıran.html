@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Sınıf Etkinliği</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f8f9fa;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 30px 20px;
+min-height: 100vh;
+margin: 0;
+/* max-width kaldırıldı, ekranı daraltmayacak */
+}
+
+h1 {
+color: #2c3e50;
+margin-bottom: 10px;
+}
+
+p {
+color: #555;
+margin-bottom: 20px;
+font-size: 18px;
+text-align: center;
+max-width: 400px;
+}
+
+input[type="text"] {
+width: 300px;
+padding: 10px;
+font-size: 16px;
+border-radius: 5px;
+border: 1px solid #ccc;
+margin-bottom: 10px;
+}
+
+button {
+padding: 10px 20px;
+background-color: #2c3e50;
+color: white;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin: 5px;
+transition: background-color 0.3s ease;
+}
+
+button:hover {
+background-color: #18bc9c;
+}
+
+
+#cevaplar {
+margin-top: 30px;
+width: 80vw;
+max-width: 900px;
+background: white;
+border-radius: 8px;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+padding: 25px 30px;
+max-height: 70vh;
+overflow-y: auto;
+font-size: 18px;
+line-height: 1.6em;
+}
+
+#cevaplar h3 {
+margin-top: 0;
+color: #2c3e50;
+text-align: center;
+font-weight: 700;
+font-size: 26px;
+}
+
+#cevaplar ul {
+list-style-type: none;
+padding-left: 0;
+max-height: 65vh;
+overflow-y: auto;
+margin: 0;
+}
+
+#cevaplar li {
+background: #e3f2fd;
+margin: 10px 0;
+padding: 15px 20px;
+border-radius: 10px;
+color: #2c3e50;
+font-weight: 600;
+white-space: pre-wrap;
+word-wrap: break-word;
+box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+}
+
+#cevaplar::-webkit-scrollbar {
+width: 12px;
+}
+
+#cevaplar::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 10px;
+}
+
+#cevaplar::-webkit-scrollbar-thumb {
+background: #2c3e50;
+border-radius: 10px;
+}
+
+#cevaplar::-webkit-scrollbar-thumb:hover {
+background: #18bc9c;
+}
+</style>
+</head>
+<body>
+
+<h1>Sınıf Etkinliği</h1>
+<p>Osmanlı'da hangi padişah olmak isterdiniz? Nedenini kısaca yazabilir misiniz? Padişahı yazıp "Ekle" butonuna basın.</p>
+
+<input type="text" id="padişahInput" placeholder="Padişah isminizi yazın..." />
+<div>
+<button id="ekleBtn">Ekle</button>
+<button id="tamamlaBtn">Tamamla</button>
+</div>
+
+<div id="cevaplar">
+<h3>Katılımcıların Seçimleri</h3>
+<ul id="cevapListesi">
+<li>Ali - Kanuni Sultan Süleyman Çünkü en geniş topraklara Süleyman döneminde sahip olduk</li>
+<li>Zeynep - Fatih Sultan Mehmet Çünkü İstanbul'u fethetti.</li>
+<li>Mehmet - Yavuz Sultan Selim Çünkü Osmanlı'nın en zengin dönemleri Yavuz zamanında yaşandı. </li>
+</ul>
+</div>
+
+<script>
+const ekleBtn = document.getElementById('ekleBtn');
+const tamamlaBtn = document.getElementById('tamamlaBtn');
+const input = document.getElementById('padişahInput');
+const cevapListesi = document.getElementById('cevapListesi');
+
+// Kullanıcı adı sabit, istersen burayı değiştir
+const kullaniciAdi = "Kullanıcı";
+
+ekleBtn.addEventListener('click', () => {
+const cevap = input.value.trim();
+if (cevap === "") {
+alert("Lütfen bir padişah ismi ve nedenini yazın.");
+return;
+}
+// Yeni cevap ekle
+const li = document.createElement('li');
+li.textContent = `${kullaniciAdi} - ${cevap}`;
+cevapListesi.appendChild(li);
+
+input.value = "";
+input.focus();
+});
+
+tamamlaBtn.addEventListener('click', () => {
+window.location.href = "tarih.html";
+});
+
+input.addEventListener('keydown', (e) => {
+if (e.key === 'Enter') {
+ekleBtn.click();
+}
+});
+</script>
+
+</body>
+</html>
+
