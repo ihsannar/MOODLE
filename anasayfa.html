@@ -276,15 +276,57 @@
     log.scrollTop = log.scrollHeight;
   }
 
-  function getBotResponse(message) {
-    if (message.includes("merhaba") || message.includes("selam")) {
-      return "Merhaba! Size nasıl yardımcı olabilirim?";
-    } else if (message.includes("osmanlı") && message.includes("kuruluş")) {
-      return "Osmanlı Devleti 1299 yılında Söğüt'te kurulmuştur.";
-    } else {
-      return "Bu konuda bilgim yok, başka bir şey sorabilir misiniz?";
-    }
-  }
+  
+
+   function getBotResponse(message) {
+     // Gündelik ve tarih soruları için cevaplar:
+     if (message.includes("merhaba") || message.includes("selam") || message.includes("hey")) {
+       return "Merhaba! Size nasıl yardımcı olabilirim?";
+     }
+     else if (message.includes("nasılsın") || message.includes("ne haber")) {
+       return "İyiyim, teşekkür ederim! Sen nasılsın?";
+     }
+     else if (message.includes("teşekkür") || message.includes("sağol")) {
+       return "Rica ederim, her zaman yardımcı olmaya hazırım!";
+     }
+     else if (message.includes("osmanlı") && message.includes("kuruluş")) {
+       return "Osmanlı Devleti 1299 yılında Söğüt'te kurulmuştur.";
+     }
+     else if (message.includes("ilk padişah") || message.includes("ilk hükümdar")) {
+       return "Osmanlı'nın ilk padişahı Osman Gazi'dir.";
+     }
+     else if (message.includes("ankara savaşı")) {
+       return "Ankara Savaşı 1402 yılında Yıldırım Bayezid ile Timur arasında yapılmıştır.";
+     }
+     else if (message.includes("fetret devri")) {
+       return "Fetret Devri, Ankara Savaşı'ndan sonra 1402-1413 yılları arasında yaşanmıştır.";
+     }
+     else if (message.includes("istanbul")) {
+       return "İstanbul 1453 yılında Fatih Sultan Mehmet tarafından fethedilmiştir.";
+     }
+     else if (message.includes("hava durumu")) {
+       return "Üzgünüm, şu anda güncel hava durumu bilgisine erişemiyorum.";
+     }
+     else if (message.includes("saat kaç") || message.includes("şu an saat")) {
+       const now = new Date();
+       return `Şu an saat: ${now.toLocaleTimeString('tr-TR')}`;
+     }
+     else if (message.includes("bugün tarih") || message.includes("bugün kaç")) {
+       const now = new Date();
+       return `Bugünün tarihi: ${now.toLocaleDateString('tr-TR')}`;
+     }
+     else if (message.includes("adın ne")) {
+       return "Ben buradaki Moodle yardımcınızım, size derslerinizle ilgili sorularda destek olabilirim.";
+     }
+     else if (message.includes("yardım")) {
+       return "Tarih ile ilgili sorular sorabilir ya da gündelik konularda bana soru sorabilirsiniz.";
+     }
+     else {
+       return "Bu konuda bilgim yok, lütfen başka bir soru sorabilir misiniz?";
+     }
+   
+
+
 
   window.addEventListener('DOMContentLoaded', () => {
     const savedAvatar = localStorage.getItem("avatar");
