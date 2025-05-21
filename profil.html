@@ -19,6 +19,12 @@
       padding: 20px;
       color: white;
       position: fixed;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.closed {
+      transform: translateX(-100%);
     }
 
     .sidebar h2 {
@@ -52,6 +58,19 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid white;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1100;
     }
 
     .container {
@@ -144,6 +163,9 @@
 </head>
 <body>
 
+<!-- Menü Butonu -->
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
 <div id="saat-tarih"></div>
 
 <div class="sidebar" id="sidebar">
@@ -221,6 +243,11 @@
   function toggleAvatarSection() {
     const section = document.getElementById('avatar-section');
     section.style.display = section.style.display === 'none' ? 'flex' : 'none';
+  }
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('closed');
   }
 
   window.addEventListener('DOMContentLoaded', () => {
