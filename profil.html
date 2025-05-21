@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Profil Sayfası</title>
   <style>
     body {
@@ -55,9 +55,8 @@
     }
 
     .container {
-      max-width: 800px;
-      margin: 50px auto;
-      margin-left: 240px;
+      max-width: 700px;
+      margin: 50px auto 50px 400px;
       background-color: white;
       padding: 30px;
       border-radius: 10px;
@@ -67,6 +66,7 @@
     .profile-info {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 15px;
       margin-top: 30px;
     }
@@ -74,6 +74,7 @@
     .profile-info label {
       font-weight: bold;
       color: #2c3e50;
+      align-self: flex-start;
     }
 
     .profile-info input,
@@ -156,7 +157,7 @@
   <a href="duyurular.html">Duyurular</a>
   <a href="profil.html">Profil</a>
   <a href="#">Dönütler</a>
-  <a href="ayarlar.html">Ayarlar</a>
+  <a href="#">Ayarlar</a>
   <a href="index.html">Çıkış Yap</a>
 </div>
 
@@ -176,11 +177,7 @@
     <img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20204304.png" onclick="selectAvatar(this.src)" alt="Avatar">
     <img src="avatarlar/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202025-05-20%20210554.png" onclick="selectAvatar(this.src)" alt="Avatar">
   </div>
-</div>
 
-<div id="son-giris"></div>
-
-<div class="container">
   <div class="profile-info">
     <label for="ad">Ad Soyad:</label>
     <input type="text" id="ad" value="Ali Veli">
@@ -200,6 +197,8 @@
     <button onclick="alert('Profil bilgileri kaydedildi!')">Kaydet</button>
   </div>
 </div>
+
+<div id="son-giris"></div>
 
 <script>
   function tarihSaatGuncelle() {
