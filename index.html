@@ -1,116 +1,135 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moodle Giriş</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('./img/indexbg.jpg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      flex-direction: column;
-    }
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Moodle Giriş</title>
+ <style>
+   body {
+     font-family: Arial, sans-serif;
+     background-image: url('./avataralr/indexbg.jpg');
+     background-repeat: no-repeat;
+     background-position: center center;
+     background-attachment: fixed;
+     background-size: cover;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     margin: 0;
+     flex-direction: column;
+   }
 
-    .login-box, .choice-box {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      width: 320px;
-      text-align: center;
-    }
 
-    .login-box h2, .choice-box h2 {
-      margin-bottom: 20px;
-    }
+   .login-box, .choice-box {
+     background-color: rgba(255, 255, 255, 0.95);
+     padding: 40px;
+     border-radius: 10px;
+     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+     width: 320px;
+     text-align: center;
+   }
 
-    .login-box input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #0073aa;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 10px 0;
-      font-size: 16px;
-    }
+   .login-box h2, .choice-box h2 {
+     margin-bottom: 20px;
+   }
 
-    button:hover {
-      background-color: #005a87;
-    }
 
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-  </style>
+   .login-box input {
+     width: 100%;
+     padding: 10px;
+     margin: 10px 0;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+   }
+
+
+   button {
+     width: 100%;
+     padding: 10px;
+     background-color: #0073aa;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin: 10px 0;
+     font-size: 16px;
+   }
+
+
+   button:hover {
+     background-color: #005a87;
+   }
+
+
+   .error {
+     color: red;
+     margin-top: 10px;
+   }
+ </style>
 </head>
 <body>
 
-  <!-- Giriş kutusu -->
-  <div class="login-box" id="loginBox">
-    <h2>Moodle Giriş</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Kullanıcı Adı" required />
-      <input type="password" id="password" placeholder="Şifre" required />
-      <button type="submit">Giriş Yap</button>
-      <div id="errorMsg" class="error"></div>
-    </form>
-  </div>
 
-  <!-- Ön Bilgi Testi Seçenek Kutusu (başta gizli) -->
-  <div class="choice-box" id="choiceBox" style="display:none;">
-    <h2>Ön Bilgi Testi Yapmak İster misin?</h2>
-    <button id="startQuizBtn">Yapmak İstiyorum</button>
-    <button id="laterBtn">Daha Sonra Yapacağım</button>
-  </div>
+ <!-- Giriş kutusu -->
+ <div class="login-box" id="loginBox">
+   <h2>Moodle Giriş</h2>
+   <form id="loginForm">
+     <input type="text" id="username" placeholder="Kullanıcı Adı" required />
+     <input type="password" id="password" placeholder="Şifre" required />
+     <button type="submit">Giriş Yap</button>
+     <div id="errorMsg" class="error"></div>
+   </form>
+ </div>
 
-  <script>
-    const loginForm = document.getElementById("loginForm");
-    const errorMsg = document.getElementById("errorMsg");
-    const loginBox = document.getElementById("loginBox");
-    const choiceBox = document.getElementById("choiceBox");
 
-    loginForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
+ <!-- Ön Bilgi Testi Seçenek Kutusu (başta gizli) -->
+ <div class="choice-box" id="choiceBox" style="display:none;">
+   <h2>Ön Bilgi Testi Yapmak İster misin?</h2>
+   <button id="startQuizBtn">Yapmak İstiyorum</button>
+   <button id="laterBtn">Daha Sonra Yapacağım</button>
+ </div>
 
-      if (username === "admin" && password === "123") {
-        // Giriş başarılı, giriş kutusunu gizle, seçim kutusunu göster
-        loginBox.style.display = "none";
-        choiceBox.style.display = "block";
-      } else {
-        errorMsg.textContent = "Hatalı kullanıcı adı veya şifre!";
-      }
-    });
 
-    document.getElementById("startQuizBtn").addEventListener("click", () => {
-      window.location.href = "quiz.html";
-    });
+ <script>
+   const loginForm = document.getElementById("loginForm");
+   const errorMsg = document.getElementById("errorMsg");
+   const loginBox = document.getElementById("loginBox");
+   const choiceBox = document.getElementById("choiceBox");
 
-    document.getElementById("laterBtn").addEventListener("click", () => {
-      window.location.href = "anasayfa.html";
-    });
-  </script>
+
+   loginForm.addEventListener("submit", function(e) {
+     e.preventDefault();
+     const username = document.getElementById("username").value.trim();
+     const password = document.getElementById("password").value.trim();
+
+
+     if (username === "admin" && password === "123") {
+       // Giriş başarılı, giriş kutusunu gizle, seçim kutusunu göster
+       loginBox.style.display = "none";
+       choiceBox.style.display = "block";
+     } else {
+       errorMsg.textContent = "Hatalı kullanıcı adı veya şifre!";
+     }
+   });
+
+
+   document.getElementById("startQuizBtn").addEventListener("click", () => {
+     window.location.href = "quiz.html";
+   });
+
+
+   document.getElementById("laterBtn").addEventListener("click", () => {
+     window.location.href = "anasayfa.html";
+   });
+ </script>
+
 
 </body>
 </html>
+
+
+
+
+
