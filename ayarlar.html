@@ -6,195 +6,286 @@
 <title>Ayarlar</title>
 <style>
 :root {
---bg-color: #f4f4f4;
---text-color: #333;
---container-bg: #fff;
+  --bg-color: #f4f4f4;
+  --text-color: #333;
+  --container-bg: #fff;
 }
 
 body.dark-mode {
---bg-color: #1e1e1e;
---text-color: #f0f0f0;
---container-bg: #2c2c2c;
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --container-bg: #2c2c2c;
 }
 
 body {
-font-family: "Segoe UI", sans-serif;
-background-color: var(--bg-color);
-color: var(--text-color);
-margin: 0;
-padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2c3e50;
+  height: 100vh;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #34495e;
+}
+
+.sidebar-avatar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
 }
 
 .container {
-max-width: 600px;
-margin: 40px auto;
-background: var(--container-bg);
-padding: 30px;
-border-radius: 16px;
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-top: 60px;
+  margin-left: 450px; /* Güncellenmiş konum */
+  background: var(--container-bg);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-text-align: center;
-margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .setting-group {
-margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 label {
-font-weight: bold;
-display: block;
-margin-bottom: 8px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
 }
 
 select {
-padding: 10px;
-font-size: 16px;
-width: 100%;
-border-radius: 8px;
-border: 1px solid #ccc;
-box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .toggle-label {
-display: flex;
-align-items: center;
-gap: 10px;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .toggle-label input[type="checkbox"] {
-width: auto;
+  width: auto;
 }
 
 .button-group {
-display: flex;
-justify-content: space-between;
-margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
 }
 
 .btn {
-text-align: center;
-background-color: #007bff;
-color: white;
-border: none;
-padding: 12px 24px;
-font-size: 16px;
-border-radius: 8px;
-cursor: pointer;
-text-decoration: none;
-flex: 1;
-margin: 0 5px;
-transition: background-color 0.3s ease;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  flex: 1;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-background-color: #0056b3;
+  background-color: #0056b3;
 }
 </style>
 </head>
 <body>
 
+<!-- Menü Butonu -->
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-avatar">
+    <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
+  </div>
+  <h2>Öğrenci Paneli</h2>
+  <a href="anasayfa.html">Ana Sayfa</a>
+  <a href="odev2.html">Ödevler ve Alıştırmalar</a>
+  <a href="#">Notlar</a>
+  <a href="duyurular.html">Duyurular</a>
+  <a href="profil.html">Profil</a>
+  <a href="#">Dönütler</a>
+  <a href="ayarlar.html">Ayarlar</a>
+  <a href="index.html">Çıkış Yap</a>
+</div>
+
+<!-- Ayar Paneli -->
 <div class="container">
-<h2>🛠️ Ayarlar</h2>
+  <h2>🛠️ Ayarlar</h2>
 
-<!-- Tema Seçimi -->
-<div class="setting-group">
-<label for="theme">Tema</label>
-<select id="theme" onchange="applyTheme()">
-<option value="light">Aydınlık Mod</option>
-<option value="dark">Karanlık Mod</option>
-</select>
-</div>
+  <div class="setting-group">
+    <label for="theme">Tema</label>
+    <select id="theme" onchange="applyTheme()">
+      <option value="light">Aydınlık Mod</option>
+      <option value="dark">Karanlık Mod</option>
+    </select>
+  </div>
 
-<!-- Dil Seçimi -->
-<div class="setting-group">
-<label for="language">Dil</label>
-<select id="language" onchange="applyLanguage()">
-<option value="tr">Türkçe</option>
-<option value="en">İngilizce</option>
-</select>
-</div>
+  <div class="setting-group">
+    <label for="language">Dil</label>
+    <select id="language" onchange="applyLanguage()">
+      <option value="tr">Türkçe</option>
+      <option value="en">İngilizce</option>
+    </select>
+  </div>
 
-<!-- Bildirim Ayarı -->
-<div class="setting-group">
-<label for="notifications">Bildirim Ayarı</label>
-<div class="toggle-label">
-<input type="checkbox" id="notifications" checked>
-<span id="notif-label">Bildirimleri Aç</span>
-</div>
-</div>
+  <div class="setting-group">
+    <label for="notifications">Bildirim Ayarı</label>
+    <div class="toggle-label">
+      <input type="checkbox" id="notifications" checked>
+      <span id="notif-label">Bildirimleri Aç</span>
+    </div>
+  </div>
 
-<!-- E-posta Aboneliği -->
-<div class="setting-group">
-<label for="email-subscription">E-posta Aboneliği</label>
-<div class="toggle-label">
-<input type="checkbox" id="email-subscription">
-<span id="email-label">Haftalık özet e-postası almak istiyorum</span>
-</div>
-</div>
+  <div class="setting-group">
+    <label for="email-subscription">E-posta Aboneliği</label>
+    <div class="toggle-label">
+      <input type="checkbox" id="email-subscription">
+      <span id="email-label">Haftalık özet e-postası almak istiyorum</span>
+    </div>
+  </div>
 
-<!-- Parola Değiştir -->
-<div class="setting-group">
-<label>Parola</label>
-<a href="parola_degistir.html" style="color:#007bff; text-decoration:none;">🔒 Parolanı değiştir</a>
-</div>
+  <div class="setting-group">
+    <label>Parola</label>
+    <a href="parola_degistir.html" style="color:#007bff; text-decoration:none;">🔐 Parolanı değiştir</a>
+  </div>
 
-<!-- Butonlar -->
-<div class="button-group">
-<button class="btn" onclick="saveSettings()">Ayarları Kaydet</button>
-<a href="anasayfa.html" class="btn">Anasayfaya Dön</a>
-</div>
+  <div class="button-group">
+    <button class="btn" onclick="saveSettings()">Ayarları Kaydet</button>
+    <a href="anasayfa.html" class="btn">Anasayfaya Dön</a>
+  </div>
 </div>
 
 <script>
 function applyTheme() {
-const theme = document.getElementById("theme").value;
-document.body.classList.toggle("dark-mode", theme === "dark");
+  const theme = document.getElementById("theme").value;
+  document.body.classList.toggle("dark-mode", theme === "dark");
 }
 
 function applyLanguage() {
-const lang = document.getElementById("language").value;
-const notifLabel = document.getElementById("notif-label");
-const emailLabel = document.getElementById("email-label");
+  const lang = document.getElementById("language").value;
+  const notifLabel = document.getElementById("notif-label");
+  const emailLabel = document.getElementById("email-label");
 
-if (lang === "en") {
-notifLabel.textContent = "Enable Notifications";
-emailLabel.textContent = "I want to receive weekly summary emails";
-} else {
-notifLabel.textContent = "Bildirimleri Aç";
-emailLabel.textContent = "Haftalık özet e-postası almak istiyorum";
-}
+  if (lang === "en") {
+    notifLabel.textContent = "Enable Notifications";
+    emailLabel.textContent = "I want to receive weekly summary emails";
+  } else {
+    notifLabel.textContent = "Bildirimleri Aç";
+    emailLabel.textContent = "Haftalık özet e-postası almak istiyorum";
+  }
 }
 
 function saveSettings() {
-const theme = document.getElementById("theme").value;
-const lang = document.getElementById("language").value;
-const notifications = document.getElementById("notifications").checked;
-const emailSub = document.getElementById("email-subscription").checked;
+  const theme = document.getElementById("theme").value;
+  const lang = document.getElementById("language").value;
+  const notifications = document.getElementById("notifications").checked;
+  const emailSub = document.getElementById("email-subscription").checked;
 
-localStorage.setItem("theme", theme);
-localStorage.setItem("language", lang);
-localStorage.setItem("notifications", notifications);
-localStorage.setItem("emailSubscription", emailSub);
+  localStorage.setItem("theme", theme);
+  localStorage.setItem("language", lang);
+  localStorage.setItem("notifications", notifications);
+  localStorage.setItem("emailSubscription", emailSub);
 
-alert("Ayarlar kaydedildi!");
+  alert("Ayarlar kaydedildi!");
 }
 
-// Sayfa yüklendiğinde varsayılan tema ve dil ayarını uygula
 window.onload = function() {
-const savedTheme = localStorage.getItem("theme") || "light";
-const savedLang = localStorage.getItem("language") || "tr";
+  const savedTheme = localStorage.getItem("theme") || "light";
+  const savedLang = localStorage.getItem("language") || "tr";
 
-document.getElementById("theme").value = savedTheme;
-document.getElementById("language").value = savedLang;
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
 
-applyTheme();
-applyLanguage();
+  document.getElementById("theme").value = savedTheme;
+  document.getElementById("language").value = savedLang;
+  applyLanguage();
+
+  const savedAvatar = localStorage.getItem("avatar");
+  if (savedAvatar) {
+    const sidebarAvatar = document.getElementById("sidebar-avatar");
+    if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+  }
+};
+
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("closed");
 }
 </script>
 
