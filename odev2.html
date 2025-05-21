@@ -1,266 +1,314 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ödev 2 - Osmanlı Tarihi</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>Ödev 2 - Osmanlı Tarihi</title>
+ <style>
+   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      display: flex;
-    }
 
-    .sidebar {
-      width: 220px;
-      background-color: #0073aa;
-      color: white;
-      padding: 20px;
-      height: 100vh;
-      position: fixed;
-    }
+   body {
+     font-family: Arial, sans-serif;
+     background-color: #f3f3f3;
+     display: flex;
+   }
 
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
 
-    .sidebar a:hover { background-color: #34495e; }
+   .sidebar {
+     width: 220px;
+     background-color: #0073aa;
+     color: white;
+     padding: 20px;
+     height: 100vh;
+     position: fixed;
+   }
 
-    .sidebar h2 {
-      color: white !important;
-      text-align: center;
-      margin-bottom: 30px;
-    }
 
-    .main-content {
-      margin-left: 240px;
-      padding: 30px;
-      width: 100%;
-    }
+   .sidebar a {
+     display: block;
+     color: white;
+     text-decoration: none;
+     padding: 10px;
+     margin-bottom: 10px;
+     border-radius: 5px;
+     transition: background 0.3s;
+   }
 
-    .container {
-      max-width: 800px;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin: auto;
-    }
 
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #000000;
-    }
+   .sidebar a:hover { background-color: #34495e; }
 
-    .section { margin-bottom: 30px; }
 
-    label, p { font-weight: bold; }
+   .sidebar h2 {
+     color: white !important;
+     text-align: center;
+     margin-bottom: 30px;
+   }
 
-    input[type="text"], input[type="file"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
 
-    button {
-      background-color: #0073aa;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
+   .main-content {
+     margin-left: 240px;
+     padding: 30px;
+     width: 100%;
+   }
 
-    button:hover { background-color: #005a87; }
 
-    .question { margin-top: 15px; }
+   .container {
+     max-width: 800px;
+     background-color: white;
+     padding: 30px;
+     border-radius: 10px;
+     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+     margin: auto;
+   }
 
-    .result {
-      margin-top: 10px;
-      font-weight: bold;
-      white-space: pre-wrap;
-    }
 
-    ul { margin-left: 20px; margin-top: 10px; }
+   h1, h2 {
+     text-align: center;
+     margin-bottom: 20px;
+     color: #000000;
+   }
 
-  </style>
+
+   .section { margin-bottom: 30px; }
+
+
+   label, p { font-weight: bold; }
+
+
+   input[type="text"], input[type="file"], textarea {
+     width: 100%;
+     padding: 10px;
+     margin-top: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+   }
+
+
+   button {
+     background-color: #0073aa;
+     color: white;
+     padding: 10px 20px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-top: 15px;
+   }
+
+
+   button:hover { background-color: #005a87; }
+
+
+   .question { margin-top: 15px; }
+
+
+   .result {
+     margin-top: 10px;
+     font-weight: bold;
+     white-space: pre-wrap;
+   }
+
+
+   ul { margin-left: 20px; margin-top: 10px; }
+
+
+ </style>
 </head>
 <body>
 
-  <div class="sidebar">
-    <a href="anasayfa.html" style="font-size: 20px; margin-bottom: 20px; display: flex; align-items: center;">
-      🏠 <span style="margin-left: 10px;">Anasayfa</span>
-    </a>
-    <h2>Ödevler</h2>
-    <a href="odev.html">Ödev 1</a>
-    <a href="odev2.html" style="background-color: #34495e;">Ödev 2</a>
-    <a href="odev3.html" id="odev3link" style="pointer-events: none; opacity: 0.5;">🔒 Ödev 3</a>
-  </div>
 
-  <div class="main-content">
-    <div class="container">
-      <h1>Ödev 2: Osmanlı'nın İdari Yapısı</h1>
+ <div class="sidebar">
+   <a href="anasayfa.html" style="font-size: 20px; margin-bottom: 20px; display: flex; align-items: center;">
+     🏠 <span style="margin-left: 10px;">Anasayfa</span>
+   </a>
+   <h2>Ödevler</h2>
+   <a href="odev.html">Ödev 1</a>
+   <a href="odev2.html" style="background-color: #34495e;">Ödev 2</a>
+   <a href="odev3.html" id="odev3link" style="pointer-events: none; opacity: 0.5;">🔒 Ödev 3</a>
+ </div>
 
-      <div class="section">
-        <p>📌 <strong>Ödev Talimatı:</strong></p>
-        <ul>
-          <li>Osmanlı Devleti'nde merkez ve taşra yönetimini araştırınız.</li>
-          <li>Sadrazamın görevleri hakkında bilgi veriniz.</li>
-          <li>500-750 kelimelik bir Word belgesi hazırlayınız.</li>
-        </ul>
-      </div>
 
-      <div class="section">
-        <h2>📎 Ödev Dosyasını Yükle</h2>
-        <input type="file" id="fileInput" />
-        <div id="gonderimDurumu"></div>
-      </div>
+ <div class="main-content">
+   <div class="container">
+     <h1>Ödev 2: Osmanlı'nın İdari Yapısı</h1>
 
-      <div class="section">
-        <h2>🖊 Kısa Cevap (2 Soru)</h2>
-        <div class="question">
-          1. Osmanlı'da divan üyeleri kimlerden oluşurdu?
-          <textarea rows="3" id="kisa1"></textarea>
-        </div>
-        <div class="question">
-          2. Taşra yönetiminde sancak beylerinin görevi neydi?
-          <textarea rows="3" id="kisa2"></textarea>
-        </div>
 
-        <!-- KISA CEVAP İÇİN KONTROL ET BUTONU -->
-        <button onclick="kontrolKisaCevap()">Kısa Cevapları Kontrol Et</button>
+     <div class="section">
+       <p>📌 <strong>Ödev Talimatı:</strong></p>
+       <ul>
+         <li>Osmanlı Devleti'nde merkez ve taşra yönetimini araştırınız.</li>
+         <li>Sadrazamın görevleri hakkında bilgi veriniz.</li>
+         <li>500-750 kelimelik bir Word belgesi hazırlayınız.</li>
+       </ul>
+     </div>
 
-        <div class="result" id="kisaSonuc"></div>
-      </div>
 
-      <div class="section">
-        <h2>🔗 Eşleştirme</h2>
-        <p>Aşağıdaki kavramları doğru açıklamayla eşleştiriniz:</p>
-        <div class="question">
-          - Sadrazam → <input type="text" id="match1" placeholder="..." /> <br /><br />
-          - Kaptan-ı Derya → <input type="text" id="match2" placeholder="..." /> <br /><br />
-          - Kadı → <input type="text" id="match3" placeholder="..." />
-        </div>
-        <button onclick="kontrolEt()">Eşleştirmeyi Kontrol Et</button>
-        <div class="result" id="matchResult"></div>
-      </div>
+     <div class="section">
+       <h2>📎 Ödev Dosyasını Yükle</h2>
+       <input type="file" id="fileInput" />
+       <div id="gonderimDurumu"></div>
+     </div>
 
-      <button onclick="tumunuKontrolEt()">Tümünü Kontrol Et</button>
-      <button onclick="gonderOdev2()">Ödevi Gönder</button>
-    </div>
-  </div>
 
-  <script>
-    function kontrolKisaCevap() {
-      const cevap1 = document.getElementById("kisa1").value.toLowerCase();
-      const cevap2 = document.getElementById("kisa2").value.toLowerCase();
+     <div class="section">
+       <h2>🖊️ Kısa Cevap (2 Soru)</h2>
+       <div class="question">
+         1. Osmanlı'da divan üyeleri kimlerden oluşurdu?
+         <textarea rows="3" id="kisa1"></textarea>
+       </div>
+       <div class="question">
+         2. Taşra yönetiminde sancak beylerinin görevi neydi?
+         <textarea rows="3" id="kisa2"></textarea>
+       </div>
 
-      let dogruSayisi = 0;
-      let mesaj = "";
 
-      const dogruCevap1 = "Sadrazam, Kazasker (Kadıasker), Defterdar";
-      const dogruCevap2 = "Asayiş/güvenlik, vergi toplamak/idare";
+       <!-- KISA CEVAP İÇİN KONTROL ET BUTONU -->
+       <button onclick="kontrolKisaCevap()">Kısa Cevapları Kontrol Et</button>
 
-      if (
-        cevap1.includes("sadrazam") &&
-        (cevap1.includes("kazasker") || cevap1.includes("kadıasker")) &&
-        cevap1.includes("defterdar")
-      ) {
-        dogruSayisi++;
-      } else {
-        mesaj += 1. sorunun doğru cevabı: ${dogruCevap1}\n;
-      }
 
-      if (
-        (cevap2.includes("asayiş") || cevap2.includes("güvenlik")) &&
-        (cevap2.includes("vergi") || cevap2.includes("vergi toplamak") || cevap2.includes("idare"))
-      ) {
-        dogruSayisi++;
-      } else {
-        mesaj += 2. sorunun doğru cevabı: ${dogruCevap2}\n;
-      }
+       <div class="result" id="kisaSonuc"></div>
+     </div>
 
-      const sonuc = document.getElementById("kisaSonuc");
-      sonuc.textContent = ✅ ${dogruSayisi}/2 kısa cevap doğru.;
 
-      if (mesaj) {
-        sonuc.textContent += "\n⚠ Yanlış cevaplar için doğrular:\n" + mesaj;
-      }
-    }
+     <div class="section">
+       <h2>🔗 Eşleştirme</h2>
+       <p>Aşağıdaki kavramları doğru açıklamayla eşleştiriniz:</p>
+       <div class="question">
+         - Sadrazam → <input type="text" id="match1" placeholder="..." /> <br /><br />
+         - Kaptan-ı Derya → <input type="text" id="match2" placeholder="..." /> <br /><br />
+         - Kadı → <input type="text" id="match3" placeholder="..." />
+       </div>
+       <button onclick="kontrolEt()">Eşleştirmeyi Kontrol Et</button>
+       <div class="result" id="matchResult"></div>
+     </div>
 
-    function kontrolEt() {
-      const dogrular = {
-        match1: "başbakan",
-        match2: "deniz kuvvetleri komutanı",
-        match3: "kadı",
-      };
 
-      let dogruSayisi = 0;
-      let mesaj = "";
+     <button onclick="tumunuKontrolEt()">Tümünü Kontrol Et</button>
+     <button onclick="gonderOdev2()">Ödevi Gönder</button>
+   </div>
+ </div>
 
-      let match1 = document.getElementById("match1").value.trim().toLowerCase();
-      let match2 = document.getElementById("match2").value.trim().toLowerCase();
-      let match3 = document.getElementById("match3").value.trim().toLowerCase();
 
-      if (match1.includes("başbakan")) {
-        dogruSayisi++;
-      } else {
-        mesaj += - Sadrazam'ın doğru açıklaması: Başbakan\n;
-      }
+ <script>
+   function kontrolKisaCevap() {
+     const cevap1 = document.getElementById("kisa1").value.toLowerCase();
+     const cevap2 = document.getElementById("kisa2").value.toLowerCase();
 
-      if (match2.includes("deniz")) {
-        dogruSayisi++;
-      } else {
-        mesaj += - Kaptan-ı Derya'nın doğru açıklaması: Deniz kuvvetleri komutanı\n;
-      }
 
-      if (match3.includes("hakim") || match3.includes("yargıç") || match3.includes("kadı")) {
-        dogruSayisi++;
-      } else {
-        mesaj += - Kadı'nın doğru açıklaması: Kadı (hakim/yargıç)\n;
-      }
+     let dogruSayisi = 0;
+     let mesaj = "";
 
-      const result = document.getElementById("matchResult");
-      result.textContent = ✅ ${dogruSayisi}/3 doğru eşleştirme yapıldı.;
 
-      if (mesaj) {
-        result.textContent += "\n⚠ Yanlış cevaplar için doğrular:\n" + mesaj;
-      }
-    }
+     const dogruCevap1 = "Sadrazam, Kazasker (Kadıasker), Defterdar";
+     const dogruCevap2 = "Asayiş/güvenlik, vergi toplamak/idare";
 
-    function tumunuKontrolEt() {
-      kontrolKisaCevap();
-      kontrolEt();
-    }
 
-    function gonderOdev2() {
-      const input = document.getElementById("fileInput");
-      const status = document.getElementById("gonderimDurumu");
+     if (
+       cevap1.includes("sadrazam") &&
+       (cevap1.includes("kazasker") || cevap1.includes("kadıasker")) &&
+       cevap1.includes("defterdar")
+     ) {
+       dogruSayisi++;
+     } else {
+       mesaj += `1. sorunun doğru cevabı: ${dogruCevap1}\n`;
+     }
 
-      if (input.files.length > 0) {
-        status.textContent = "✅ Ödev başarıyla gönderildi.";
 
-        const odev3 = document.getElementById("odev3link");
-        odev3.style.pointerEvents = "auto";
-        odev3.style.opacity = "1";
-        odev3.textContent = "Ödev 3";
-        odev3.href = "odev3.html";
-      } else {
-        status.textContent = "⚠ Lütfen bir dosya seçin.";
-      }
-    }
-  </script>
+     if (
+       (cevap2.includes("asayiş") || cevap2.includes("güvenlik")) &&
+       (cevap2.includes("vergi") || cevap2.includes("vergi toplamak") || cevap2.includes("idare"))
+     ) {
+       dogruSayisi++;
+     } else {
+       mesaj += `2. sorunun doğru cevabı: ${dogruCevap2}\n`;
+     }
+
+
+     const sonuc = document.getElementById("kisaSonuc");
+     sonuc.textContent = `✅ ${dogruSayisi}/2 kısa cevap doğru.`;
+
+
+     if (mesaj) {
+       sonuc.textContent += "\n⚠️ Yanlış cevaplar için doğrular:\n" + mesaj;
+     }
+   }
+
+
+   function kontrolEt() {
+     const dogrular = {
+       match1: "başbakan",
+       match2: "deniz kuvvetleri komutanı",
+       match3: "kadı",
+     };
+
+
+     let dogruSayisi = 0;
+     let mesaj = "";
+
+
+     let match1 = document.getElementById("match1").value.trim().toLowerCase();
+     let match2 = document.getElementById("match2").value.trim().toLowerCase();
+     let match3 = document.getElementById("match3").value.trim().toLowerCase();
+
+
+     if (match1.includes("başbakan")) {
+       dogruSayisi++;
+     } else {
+       mesaj += `- Sadrazam'ın doğru açıklaması: Başbakan\n`;
+     }
+
+
+     if (match2.includes("deniz")) {
+       dogruSayisi++;
+     } else {
+       mesaj += `- Kaptan-ı Derya'nın doğru açıklaması: Deniz kuvvetleri komutanı\n`;
+     }
+
+
+     if (match3.includes("hakim") || match3.includes("yargıç") || match3.includes("kadı")) {
+       dogruSayisi++;
+     } else {
+       mesaj += `- Kadı'nın doğru açıklaması: Kadı (hakim/yargıç)\n`;
+     }
+
+
+     const result = document.getElementById("matchResult");
+     result.textContent = `✅ ${dogruSayisi}/3 doğru eşleştirme yapıldı.`;
+
+
+     if (mesaj) {
+       result.textContent += "\n⚠️ Yanlış cevaplar için doğrular:\n" + mesaj;
+     }
+   }
+
+
+   function tumunuKontrolEt() {
+     kontrolKisaCevap();
+     kontrolEt();
+   }
+
+
+   function gonderOdev2() {
+     const input = document.getElementById("fileInput");
+     const status = document.getElementById("gonderimDurumu");
+
+
+     if (input.files.length > 0) {
+       status.textContent = "✅ Ödev başarıyla gönderildi.";
+
+
+       const odev3 = document.getElementById("odev3link");
+       odev3.style.pointerEvents = "auto";
+       odev3.style.opacity = "1";
+       odev3.textContent = "Ödev 3";
+       odev3.href = "odev3.html";
+     } else {
+       status.textContent = "⚠️ Lütfen bir dosya seçin.";
+     }
+   }
+ </script>
 </body>
 </html>
+
+
+
