@@ -26,7 +26,7 @@
       padding: 20px;
       color: white;
       position: fixed;
-      top: 70px; /* header yüksekliği kadar boşluk */
+      top: 70px;
       left: 0;
       transition: transform 0.3s ease;
       z-index: 999;
@@ -34,6 +34,19 @@
 
     .sidebar.closed {
       transform: translateX(-100%);
+    }
+
+    .sidebar-avatar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-avatar img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
     }
 
     .sidebar h2 {
@@ -57,7 +70,6 @@
       background-color: #34495e;
     }
 
-    /* Toggle Button */
     .toggle-btn {
       position: fixed;
       top: 20px;
@@ -71,7 +83,6 @@
       z-index: 1100;
     }
 
-    /* Üst Bar */
     header {
       position: fixed;
       top: 0;
@@ -95,7 +106,6 @@
       font-size: 24px;
     }
 
-    /* Ana İçerik */
     .main-content {
       flex: 1;
       margin-left: 240px;
@@ -146,7 +156,6 @@
       display: block;
     }
 
-    /* Saat ve Tarih */
     #saat-tarih {
       position: fixed;
       top: 10px;
@@ -161,7 +170,6 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
 
-    /* Quiz Link Butonu */
     #quiz-link .btn {
       display: inline-block;
       margin-top: 10px;
@@ -178,7 +186,6 @@
       background-color: #18bc9c;
     }
 
-    /* Ev simgesi */
     .home-link {
       cursor: pointer;
       display: flex;
@@ -198,13 +205,10 @@
 </head>
 <body>
 
-  <!-- Menü Butonu -->
   <button class="toggle-btn" onclick="toggleSidebar()">☰ Menü</button>
 
-  <!-- Saat-Tarih -->
   <div id="saat-tarih"></div>
 
-  <!-- Üst Bar -->
   <header>
     <a href="anasayfa.html" class="home-link" title="Anasayfa">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
@@ -214,11 +218,13 @@
     <h1>Tarih Dersi</h1>
   </header>
 
-  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
+    <div class="sidebar-avatar">
+      <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
+    </div>
     <h2>Öğrenci Paneli</h2>
     <a href="anasayfa.html">Anasayfa</a>
-    <a href="odev.html">Ödevler ve Alıştırmalar</a> 
+    <a href="odev.html">Ödevler ve Alıştırmalar</a>
     <a href="#">Notlar</a>
     <a href="#">Duyurular</a>
     <a href="#">Profil</a>
@@ -226,7 +232,6 @@
     <a href="#">Ayarlar</a>
   </div>
 
-  <!-- İçerik -->
   <div class="main-content" id="mainContent">
     <section>
       <h2>🎥 Ders Videosu</h2>
@@ -241,7 +246,7 @@
         Bu bölümde Türk devletlerinin tarihsel gelişim süreçleri anlatılacaktır. İçeriği buraya yazabilirsiniz.
       </p>
     </section>
-    
+
     <section id="quiz-link">
       <h2>📝 Osmanlı Quizi</h2>
       <p>Osmanlı tarihiyle ilgili bilgini test etmek ister misin? Aşağıdaki butona tıklayarak mini quize katılabilirsin.</p>
@@ -255,7 +260,7 @@
       <input type="submit" value="Gönder">
     </section>
 
-     <section id="quiz-link">
+    <section id="quiz-link">
       <h2>Sınıf İçi Etkinlik</h2>
       <a class="btn" href="buzkıran.html">Etkinliğe Git</a>
     </section>
@@ -268,13 +273,18 @@
     </section>
   </div>
 
-  <!-- Script -->
   <script>
     function tarihSaatGuncelle() {
       const now = new Date();
       const tarih = now.toLocaleDateString('tr-TR');
       const saat = now.toLocaleTimeString('tr-TR');
-      document.getElementById("saat-tarih").textContent = ${tarih} ${saat};
+      document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+
+      const savedAvatar = localStorage.getItem("avatar");
+      if (savedAvatar) {
+        const sidebarAvatar = document.getElementById("sidebar-avatar");
+        if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+      }
     }
 
     setInterval(tarihSaatGuncelle, 1000);
