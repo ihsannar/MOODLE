@@ -1,241 +1,282 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Osmanlı Quizi</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
+ <meta charset="UTF-8" />
+ <title>Osmanlı Quizi</title>
+ <style>
+   body {
+     font-family: Arial, sans-serif;
+     background-color: #f4f4f4;
+     padding: 20px;
+   }
 
-    #quiz-container {
-      max-width: 700px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
 
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-    }
+   #quiz-container {
+     max-width: 700px;
+     margin: 50px auto;
+     background-color: white;
+     padding: 30px;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+   }
 
-    .question-box {
-      margin-bottom: 20px;
-    }
 
-    .question-box h3 {
-      margin-bottom: 15px;
-    }
+   h1 {
+     text-align: center;
+     color: #2c3e50;
+   }
 
-    .answers label {
-      display: block;
-      margin-left: 10px;
-      margin-bottom: 10px;
-    }
 
-    #next-btn, #enter-system-btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #2c3e50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+   .question-box {
+     margin-bottom: 20px;
+   }
 
-    #next-btn:hover, #enter-system-btn:hover {
-      background-color: #34495e;
-    }
 
-    #result {
-      text-align: center;
-      font-size: 20px;
-      color: green;
-      margin-top: 20px;
-    }
+   .question-box h3 {
+     margin-bottom: 15px;
+   }
 
-    #review-container {
-      margin-top: 30px;
-    }
 
-    .correct {
-      color: green;
-      font-weight: bold;
-    }
+   .answers label {
+     display: block;
+     margin-left: 10px;
+     margin-bottom: 10px;
+   }
 
-    .incorrect {
-      color: red;
-      font-weight: bold;
-    }
 
-    #saat-tarih {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #2c3e50;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 5px;
-      font-family: monospace;
-      font-size: 14px;
-      z-index: 999;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
-  </style>
+   #next-btn, #enter-system-btn {
+     padding: 10px 20px;
+     font-size: 16px;
+     background-color: #2c3e50;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     margin-top: 20px;
+   }
+
+
+   #next-btn:hover, #enter-system-btn:hover {
+     background-color: #34495e;
+   }
+
+
+   #result {
+     text-align: center;
+     font-size: 20px;
+     color: green;
+     margin-top: 20px;
+   }
+
+
+   #review-container {
+     margin-top: 30px;
+   }
+
+
+   .correct {
+     color: green;
+     font-weight: bold;
+   }
+
+
+   .incorrect {
+     color: red;
+     font-weight: bold;
+   }
+
+
+   /* Tarih Saat */
+   #saat-tarih {
+     position: fixed;
+     top: 10px;
+     right: 10px;
+     background-color: #2c3e50;
+     color: white;
+     padding: 8px 12px;
+     border-radius: 5px;
+     font-family: monospace;
+     font-size: 14px;
+     z-index: 999;
+     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+   }
+ </style>
 </head>
 <body>
 
+
 <div id="saat-tarih"></div>
 
+
 <div id="quiz-container">
-  <h1>🕌 Osmanlı Quizi</h1>
-  <div id="question-area"></div>
-  <button id="next-btn">İleri</button>
-  <div id="result"></div>
-  <div id="review-container"></div>
+ <h1>🕌 Osmanlı Quizi</h1>
+ <div id="question-area"></div>
+ <button id="next-btn">İleri</button>
+ <div id="result"></div>
+ <div id="review-container"></div>
 </div>
 
+
 <script>
-  const sorular = [
-    {
-      soru: "1. Osmanlı Devleti'nin kurucusu kimdir?",
-      secenekler: ["Osman Gazi", "Orhan Gazi", "Yavuz Sultan Selim", "Fatih Sultan Mehmet"],
-      dogru: 0
-    },
-    {
-      soru: "2. İstanbul'u fetheden Osmanlı padişahı kimdir?",
-      secenekler: ["Yıldırım Bayezid", "II. Murat", "Fatih Sultan Mehmet", "Kanuni Sultan Süleyman"],
-      dogru: 2
-    },
-    {
-      soru: "3. Osmanlı Devleti hangi yılda resmen sona ermiştir?",
-      secenekler: ["1918", "1920", "1922", "1923"],
-      dogru: 2
-    },
-    {
-      soru: "4. Kanuni Sultan Süleyman hangi unvanla da bilinir?",
-      secenekler: ["Fatih", "Yavuz", "Muhteşem", "Gaznevi"],
-      dogru: 2
-    },
-    {
-      soru: "5. Osmanlı'da ilk anayasa hangi dönemde ilan edilmiştir?",
-      secenekler: ["Tanzimat", "Islahat", "I. Meşrutiyet", "II. Meşrutiyet"],
-      dogru: 2
-    },
-    {
-      soru: "6. Osmanlı Devleti en geniş sınırlarına hangi padişah döneminde ulaşmıştır?",
-      secenekler: ["Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "IV. Murat", "II. Selim"],
-      dogru: 1
-    },
-    {
-      soru: "7. Osmanlı Devleti'nde divan toplantılarını kim yönetirdi?",
-      secenekler: ["Padişah", "Sadrazam", "Şeyhülislam", "Kaptan-ı Derya"],
-      dogru: 1
-    },
-    {
-      soru: "8. Osmanlı'nın ilk başkenti neresidir?",
-      secenekler: ["İstanbul", "Edirne", "Bursa", "Ankara"],
-      dogru: 2
-    },
-    {
-      soru: "9. Osmanlı'da eğitimden sorumlu kişi kimdir?",
-      secenekler: ["Vezir", "Şeyhülislam", "Kaptan-ı Derya", "Defterdar"],
-      dogru: 1
-    },
-    {
-      soru: "10. Osmanlı donanması Preveze Deniz Zaferi'ni hangi denizde kazanmıştır?",
-      secenekler: ["Karadeniz", "Akdeniz", "Ege Denizi", "Marmara Denizi"],
-      dogru: 1
-    }
-  ];
+ const sorular = [
+   {
+     soru: "1. Osmanlı Devleti'nin kurucusu kimdir?",
+     secenekler: ["Osman Gazi", "Orhan Gazi", "Yavuz Sultan Selim", "Fatih Sultan Mehmet"],
+     dogru: 0
+   },
+   {
+     soru: "2. İstanbul'u fetheden Osmanlı padişahı kimdir?",
+     secenekler: ["Yıldırım Bayezid", "II. Murat", "Fatih Sultan Mehmet", "Kanuni Sultan Süleyman"],
+     dogru: 2
+   },
+   {
+     soru: "3. Osmanlı Devleti hangi yılda resmen sona ermiştir?",
+     secenekler: ["1918", "1920", "1922", "1923"],
+     dogru: 2
+   },
+   {
+     soru: "4. Kanuni Sultan Süleyman hangi unvanla da bilinir?",
+     secenekler: ["Fatih", "Yavuz", "Muhteşem", "Gaznevi"],
+     dogru: 2
+   },
+   {
+     soru: "5. Osmanlı'da ilk anayasa hangi dönemde ilan edilmiştir?",
+     secenekler: ["Tanzimat", "Islahat", "I. Meşrutiyet", "II. Meşrutiyet"],
+     dogru: 2
+   },
+   {
+     soru: "6. Osmanlı Devleti en geniş sınırlarına hangi padişah döneminde ulaşmıştır?",
+     secenekler: ["Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "IV. Murat", "II. Selim"],
+     dogru: 1
+   },
+   {
+     soru: "7. Osmanlı Devleti'nde divan toplantılarını kim yönetirdi?",
+     secenekler: ["Padişah", "Sadrazam", "Şeyhülislam", "Kaptan-ı Derya"],
+     dogru: 1
+   },
+   {
+     soru: "8. Osmanlı'nın ilk başkenti neresidir?",
+     secenekler: ["İstanbul", "Edirne", "Bursa", "Ankara"],
+     dogru: 2
+   },
+   {
+     soru: "9. Osmanlı'da eğitimden sorumlu kişi kimdir?",
+     secenekler: ["Vezir", "Şeyhülislam", "Kaptan-ı Derya", "Defterdar"],
+     dogru: 1
+   },
+   {
+     soru: "10. Osmanlı donanması Preveze Deniz Zaferi'ni hangi denizde kazanmıştır?",
+     secenekler: ["Karadeniz", "Akdeniz", "Ege Denizi", "Marmara Denizi"],
+     dogru: 1
+   }
+ ];
 
-  let soruIndex = 0;
-  let cevaplar = [];
 
-  const questionArea = document.getElementById("question-area");
-  const nextBtn = document.getElementById("next-btn");
-  const resultDiv = document.getElementById("result");
-  const reviewContainer = document.getElementById("review-container");
+ let soruIndex = 0;
+ let cevaplar = [];
 
-  function soruGoster() {
-    const s = sorular[soruIndex];
-    let html = `<div class="question-box">
-                  <h3>${s.soru}</h3>
-                  <div class="answers">`;
-    s.secenekler.forEach((secenek, i) => {
-      html += `<label><input type="radio" name="answer" value="${i}"> ${secenek}</label>`;
-    });
-    html += `</div></div>`;
-    questionArea.innerHTML = html;
-  }
 
-  nextBtn.addEventListener("click", () => {
-    const secilen = document.querySelector('input[name="answer"]:checked');
-    if (!secilen) {
-      alert("Lütfen bir seçenek seçin.");
-      return;
-    }
+ const questionArea = document.getElementById("question-area");
+ const nextBtn = document.getElementById("next-btn");
+ const resultDiv = document.getElementById("result");
+ const reviewContainer = document.getElementById("review-container");
 
-    const cevap = parseInt(secilen.value);
-    cevaplar.push(cevap);
-    soruIndex++;
 
-    if (soruIndex < sorular.length) {
-      soruGoster();
-    } else {
-      questionArea.innerHTML = "";
-      nextBtn.style.display = "none";
-      resultDiv.innerHTML = `<strong>Quiz tamamlandı!</strong><br>`;
+ function soruGoster() {
+   const s = sorular[soruIndex];
+   let html = `<div class="question-box">
+                 <h3>${s.soru}</h3>
+                 <div class="answers">`;
+   s.secenekler.forEach((secenek, i) => {
+     html += `<label><input type="radio" name="answer" value="${i}"> ${secenek}</label>`;
+   });
+   html += `</div></div>`;
+   questionArea.innerHTML = html;
+ }
 
-      let dogruSayisi = 0;
-      let reviewHtml = '';
 
-      sorular.forEach((soru, i) => {
-        const kullaniciCevap = cevaplar[i];
-        const dogruCevap = soru.dogru;
+ nextBtn.addEventListener("click", () => {
+   const secilen = document.querySelector('input[name="answer"]:checked');
+   if (!secilen) {
+     alert("Lütfen bir seçenek seçin.");
+     return;
+   }
 
-        reviewHtml += `<div class="question-box">`;
-        reviewHtml += `<h3>${soru.soru}</h3>`;
 
-        if (kullaniciCevap === dogruCevap) {
-          dogruSayisi++;
-          reviewHtml += `<p class="correct">Cevabınız doğru, tebrikler! (${soru.secenekler[kullaniciCevap]})</p>`;
-        } else {
-          reviewHtml += `<p class="incorrect">Yanlış cevap. Doğru cevap: ${soru.secenekler[dogruCevap]}</p>`;
-          reviewHtml += `<p>Verdiğiniz cevap: ${soru.secenekler[kullaniciCevap]}</p>`;
-        }
+   const cevap = parseInt(secilen.value);
+   cevaplar.push(cevap);
 
-        reviewHtml += `</div>`;
-      });
 
-      reviewHtml += `<hr><p><strong>Toplam Doğru Sayısı: ${dogruSayisi} / ${sorular.length}</strong></p>`;
-      reviewHtml += `<button id="enter-system-btn">Sisteme Giriş</button>`;
+   soruIndex++;
 
-      reviewContainer.innerHTML = reviewHtml;
 
-      document.getElementById("enter-system-btn").addEventListener("click", () => {
-        window.location.href = "anasayfa.html";
-      });
-    }
-  });
+   if (soruIndex < sorular.length) {
+     soruGoster();
+   } else {
+     // Quiz bitti, sonucu ve incelemeyi göster
+     questionArea.innerHTML = "";
+     nextBtn.style.display = "none";
+     resultDiv.innerHTML = `<strong>Quiz tamamlandı!</strong><br>`;
 
-  soruGoster();
 
-  function tarihSaatGuncelle() {
-    const now = new Date();
-    const tarih = now.toLocaleDateString('tr-TR');
-    const saat = now.toLocaleTimeString('tr-TR');
-    document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
-  }
-  setInterval(tarihSaatGuncelle, 1000);
-  tarihSaatGuncelle();
+     let dogruSayisi = 0;
+     let reviewHtml = '';
+
+
+     sorular.forEach((soru, i) => {
+       const kullaniciCevap = cevaplar[i];
+       const dogruCevap = soru.dogru;
+
+
+       reviewHtml += `<div class="question-box">`;
+       reviewHtml += `<h3>${soru.soru}</h3>`;
+
+
+       if (kullaniciCevap === dogruCevap) {
+         dogruSayisi++;
+         reviewHtml += `<p class="correct">Cevabınız doğru, tebrikler! (${soru.secenekler[kullaniciCevap]})</p>`;
+       } else {
+         reviewHtml += `<p class="incorrect">Yanlış cevap. Doğru cevap: ${soru.secenekler[dogruCevap]}</p>`;
+         reviewHtml += `<p>Verdiğiniz cevap: ${soru.secenekler[kullaniciCevap]}</p>`;
+       }
+
+
+       reviewHtml += `</div>`;
+     });
+
+
+     reviewHtml += `<hr><p><strong>Toplam Doğru Sayısı: ${dogruSayisi} / ${sorular.length}</strong></p>`;
+     reviewHtml += `<button id="enter-system-btn">Sisteme Giriş</button>`;
+
+
+     reviewContainer.innerHTML = reviewHtml;
+
+
+     // Sisteme Giriş butonuna tıklama
+     document.getElementById("enter-system-btn").addEventListener("click", () => {
+       window.location.href = "anasayfa.html";
+     });
+   }
+ });
+
+
+ soruGoster();
+
+
+ // Saat ve tarih güncelleme
+ function tarihSaatGuncelle() {
+   const now = new Date();
+   const tarih = now.toLocaleDateString('tr-TR');
+   const saat = now.toLocaleTimeString('tr-TR');
+   document.getElementById("saat-tarih").textContent = `${tarih} ${saat}`;
+ }
+ setInterval(tarihSaatGuncelle, 1000);
+ tarihSaatGuncelle();
 </script>
+
 
 </body>
 </html>
+
+
+
