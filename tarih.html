@@ -12,7 +12,227 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
+      background-color: #f8f9fa;<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .sidebar {
+    width: 220px;
+    background-color: #2c3e50;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar-avatar {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+  }
+
+  .sidebar h2 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  .sidebar a:hover {
+    background-color: #34495e;
+  }
+
+  .main-content {
+    flex: 1;
+    margin-left: 240px;
+    padding: 90px 30px 30px 30px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .main-content.shifted {
+    margin-left: 80px;
+  }
+
+  section {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .placeholder-video {
+    background-color: #ddd;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+
+  input[type="file"],
+  input[type="submit"] {
+    margin-top: 10px;
+    display: block;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #18bc9c;
+  }
+</style>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-avatar">
+    <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
+  </div>
+  <h2>Öğrenci Paneli</h2>
+  <a href="anasayfa.html">Anasayfa</a>
+  <a href="odev.html">Ödevler ve Alıştırmalar</a>
+  <a href="#">Notlar</a>
+  <a href="duyurular.html">Duyurular</a>
+  <a href="profil.html">Profil</a>
+  <a href="#">Dönütler</a>
+  <a href="ayarlar.html">Ayarlar</a>
+  <a href="index.html">Çıkış Yap</a>
+</div>
+
+<div class="main-content" id="mainContent">
+  <section>
+    <h2>🗺️ Tanışma Haritası</h2>
+    <p>Tanışma haritasını doldurarak kendinizi tanıtabilirsiniz. Haritayı doldurmadan diğer içerikler erişilemez.</p>
+    <a class="btn" href="tanisma.html" id="start-map">Haritayı Doldur</a>
+  </section>
+
+  <div id="main-sections" style="display: none;">
+    <section>
+      <h2>🎬 Ders Tanıtım Videosu</h2>
+      <video width="100%" height="300" controls>
+        <source src="avatarlar/ders_tanitim.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+      </video>
+    </section>
+
+    <section>
+      <h2>🎥 Ders Videosu</h2>
+      <div class="placeholder-video">
+        Video Alanı (buraya video embed edilecek)
+      </div>
+    </section>
+
+    <section>
+      <h2>📖 Konu Anlatımı</h2>
+      <p>
+        Bu bölümde Türk devletlerinin tarihsel gelişim süreçleri anlatılacaktır. İçeriği buraya yazabilirsiniz.
+      </p>
+    </section>
+
+    <section id="quiz-link">
+      <h2>📝 Osmanlı Quizi</h2>
+      <p>Osmanlı tarihiyle ilgili bilgini test etmek ister misin? Aşağıdaki butona tıklayarak mini quize katılabilirsin.</p>
+      <a class="btn" href="quiz.html">Quizi Başlat</a>
+    </section>
+
+    <section>
+      <h2>❓ Soru - Cevap</h2>
+      <label for="question">Sorunuzu buraya yazın:</label><br>
+      <textarea id="question" rows="4" placeholder="Örneğin: Osmanlı Devleti'nin kuruluş yılı nedir?"></textarea>
+      <input type="submit" value="Gönder">
+    </section>
+
+    <section id="quiz-link">
+      <h2>Sınıf İçi Etkinlik</h2>
+      <a class="btn" href="buzkıran.html">Etkinliğe Git</a>
+    </section>
+
+    <section>
+      <h2>📝 Ödev Gönderme</h2>
+      <p>Lütfen PDF veya Word formatında ödevinizi yükleyin:</p>
+      <input type="file" name="homework" id="homework">
+      <input type="submit" value="Ödevi Gönder">
+    </section>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const visited = localStorage.getItem('visitedMap');
+    const mainSections = document.getElementById('main-sections');
+    if (visited === 'true') {
+      mainSections.style.display = 'block';
+    }
+
+    document.getElementById('start-map').addEventListener('click', () => {
+      localStorage.setItem('visitedMap', 'true');
+    });
+
+    const savedAvatar = localStorage.getItem("avatar");
+    if (savedAvatar) {
+      const sidebarAvatar = document.getElementById("sidebar-avatar");
+      if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+    }
+  });
+</script>
+
       margin: 0;
       padding: 0;
       display: flex;
