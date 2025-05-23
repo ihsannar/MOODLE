@@ -176,12 +176,29 @@
         Tarayıcınız video etiketini desteklemiyor.
       </video>
     </section>
-    <section>
-      <h2>🎥 Ders Videosu</h2>
-     <video width="100%" height="300" controls>
-        <source src="baba/mauroicardiden.mp4" type="video/mp4">
-        Tarayıcınız video etiketini desteklemiyor.
-      </video>
+   <section>
+  <h2>🎥 Ders Videosu</h2>
+  <div style="margin-bottom: 10px;">
+    <button onclick="changeVideo('baba/mauroicardiden.mp4')" class="btn" id="btn1">Video 1</button>
+    <button onclick="changeVideo('baba/ikinci-video.mp4')" class="btn" id="btn2">Video 2</button>
+  </div>
+  <video id="mainVideo" width="100%" height="300" controls>
+    <source src="baba/mauroicardiden.mp4" type="video/mp4">
+    Tarayıcınız video etiketini desteklemiyor.
+  </video>
+</section>
+
+<script>
+  function changeVideo(src) {
+    var video = document.getElementById("mainVideo");
+    video.pause();
+    video.setAttribute("src", src);
+    // Güncel video çalışsın:
+    video.load();
+    video.play();
+  }
+</script>
+
     </section>
     <section>
       <h2>📖 Konu Anlatımı</h2>
