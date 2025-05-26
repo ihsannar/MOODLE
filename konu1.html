@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Konu 1</title>
+ <style>
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+   body {
+     font-family: 'Segoe UI', sans-serif;
+     background-color: #f0f2f5;
+     display: flex;
+   }
+   body.dark-mode {
+     background-color: #181a1b;
+     color: #f5f5f5;
+   }
+   .sidebar {
+     width: 220px;
+     background-color: #2c3e50;
+     height: 100vh;
+     padding: 20px;
+     color: white;
+     position: fixed;
+     left: 0;
+     top: 0;
+     transition: transform 0.3s ease;
+     z-index: 1000;
+   }
+   body.dark-mode .sidebar { background-color: #1c1f21; }
+   .sidebar.closed { transform: translateX(-100%); }
+   .sidebar h2 { margin-top: 60px; margin-bottom: 30px; font-size: 22px; text-align: center; color: #fff; }
+   .sidebar a { display: block; color: white; text-decoration: none; padding: 12px; margin-bottom: 10px; border-radius: 5px; transition: background 0.3s; }
+   .sidebar a:hover { background-color: #34495e; }
+   .sidebar-avatar { text-align: center; margin-bottom: 20px; }
+   .sidebar-avatar img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white; }
+   .toggle-btn {
+     position: fixed;
+     top: 20px;
+     left: 20px;
+     background-color: #2c3e50;
+     color: white;
+     padding: 10px 15px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     z-index: 1100;
+   }
+   .main-content {
+     margin-left: 240px;
+     padding: 50px 30px;
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     gap: 32px;
+     min-height: 100vh;
+   }
+   .section-box {
+     background: #fff;
+     border-radius: 10px;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+     padding: 32px;
+     margin-bottom: 10px;
+     color: #2c3e50;
+   }
+   body.dark-mode .section-box { background: #222426; color: #f5f5f5; }
+   .btn {
+     display: inline-block;
+     margin-top: 16px;
+     background-color: #2c3e50;
+     color: white;
+     padding: 12px 24px;
+     border-radius: 8px;
+     text-decoration: none;
+     font-weight: bold;
+     transition: background-color 0.3s;
+     border: none;
+     cursor: pointer;
+     font-size: 1rem;
+   }
+   .btn[disabled], .btn:disabled {
+     background: #888 !important;
+     cursor: not-allowed;
+     opacity: 0.7;
+   }
+   .btn:hover:not([disabled]) {
+     background-color: #18bc9c;
+   }
+ </style>
+</head>
+<body>
+
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-avatar">
+    <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
+  </div>
+  <h2>Öğrenci Paneli</h2>
+  <a href="anasayfa.html">Ana Sayfa</a>
+  <a href="odev.html">Ödevler ve Alıştırmalar</a>
+  <a href="notlar.html">Notlar</a>
+  <a href="duyurular.html">Duyurular</a>
+  <a href="profil.html">Profil</a>
+  <a href="forum.html">Forum</a>
+  <a href="ayarlar.html">Ayarlar</a>
+  <a href="index.html">Çıkış Yap</a>
+</div>
+
+<div class="main-content" id="mainContent">
+  <div class="section-box">
+    <h2>🎬 Konu 1 - Video Anlatım</h2>
+    <video id="lessonVideo" width="100%" height="340" controls>
+      <source src="avatarlar/konu1video.mp4" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <p style="margin-top:10px; color:#888;">Teste geçmek için önce videoyu tamamen izlemelisin.</p>
+  </div>
+  <div class="section-box">
+    <h2>📖 Konu PDF'i</h2>
+    <a class="btn" href="pdfler/konu1.pdf" target="_blank">PDF'yi Görüntüle</a>
+  </div>
+  <div class="section-box">
+    <h2>📝 Konu Testi</h2>
+    <button class="btn" id="quizBtn" disabled>Teste Başla</button>
+  </div>
+</div>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('mainContent');
+    sidebar.classList.toggle('closed');
+    main.classList.toggle('shifted');
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+    }
+    const savedAvatar = localStorage.getItem("avatar");
+    if (savedAvatar) {
+      const sidebarAvatar = document.getElementById("sidebar-avatar");
+      if (sidebarAvatar) sidebarAvatar.src = savedAvatar;
+    }
+    // Video bitmeden butonu açma
+    var video = document.getElementById("lessonVideo");
+    var quizBtn = document.getElementById("quizBtn");
+    video.addEventListener("ended", function() {
+      quizBtn.disabled = false;
+      quizBtn.style.backgroundColor = "#18bc9c";
+    });
+    quizBtn.addEventListener("click", function() {
+      if (!quizBtn.disabled) {
+        window.location.href = "test1.html";
+      }
+    });
+  });
+</script>
+</body>
+</html>
