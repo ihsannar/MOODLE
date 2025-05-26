@@ -5,11 +5,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Tarih Dersi</title>
  <style>
-   * {
-     box-sizing: border-box;
-     margin: 0;
-     padding: 0;
-   }
+   * { box-sizing: border-box; margin: 0; padding: 0; }
    body {
      font-family: 'Segoe UI', sans-serif;
      background-color: #f0f2f5;
@@ -31,42 +27,13 @@
      transition: transform 0.3s ease;
      z-index: 1000;
    }
-   body.dark-mode .sidebar {
-     background-color: #1c1f21;
-   }
-   .sidebar.closed {
-     transform: translateX(-100%);
-   }
-   .sidebar h2 {
-     margin-top: 60px;
-     margin-bottom: 30px;
-     font-size: 22px;
-     text-align: center;
-     color: #fff; /* Sidebar başlığı beyaz */
-   }
-   .sidebar a {
-     display: block;
-     color: white;
-     text-decoration: none;
-     padding: 12px;
-     margin-bottom: 10px;
-     border-radius: 5px;
-     transition: background 0.3s;
-   }
-   .sidebar a:hover {
-     background-color: #34495e;
-   }
-   .sidebar-avatar {
-     text-align: center;
-     margin-bottom: 20px;
-   }
-   .sidebar-avatar img {
-     width: 60px;
-     height: 60px;
-     border-radius: 50%;
-     object-fit: cover;
-     border: 2px solid white;
-   }
+   body.dark-mode .sidebar { background-color: #1c1f21; }
+   .sidebar.closed { transform: translateX(-100%); }
+   .sidebar h2 { margin-top: 60px; margin-bottom: 30px; font-size: 22px; text-align: center; color: #fff; }
+   .sidebar a { display: block; color: white; text-decoration: none; padding: 12px; margin-bottom: 10px; border-radius: 5px; transition: background 0.3s; }
+   .sidebar a:hover { background-color: #34495e; }
+   .sidebar-avatar { text-align: center; margin-bottom: 20px; }
+   .sidebar-avatar img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid white; }
    .toggle-btn {
      position: fixed;
      top: 20px;
@@ -81,76 +48,36 @@
    }
    .main-content {
      margin-left: 240px;
-     padding: 30px;
+     padding: 50px 30px;
      flex: 1;
-     transition: margin-left 0.3s ease;
-   }
-   .main-content.shifted {
-     margin-left: 80px;
-   }
-   section {
-     margin: 30px 0;
-     padding: 20px;
-     background-color: white;
-     border-radius: 10px;
-     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-   }
-   body.dark-mode section {
-     background-color: #222426;
-     color: #f5f5f5;
-   }
-   .main-content h2 {
-     margin-bottom: 10px;
-     color: #2c3e50 !important;
-   }
-   body.dark-mode .main-content h2 {
-     color: #2c3e50 !important;
-   }
-   .placeholder-video {
-     background-color: #ddd;
-     width: 100%;
-     height: 300px;
      display: flex;
-     align-items: center;
-     justify-content: center;
-     color: #555;
-     font-size: 18px;
+     flex-direction: column;
+     gap: 24px;
+     min-height: 100vh;
+   }
+   .main-content.shifted { margin-left: 80px; }
+   .topic-slot {
+     background: #fff;
      border-radius: 10px;
-   }
-   textarea {
-     width: 100%;
-     padding: 10px;
-     border-radius: 5px;
-     border: 1px solid #ccc;
-     resize: vertical;
-   }
-   input[type="file"],
-   input[type="submit"] {
-     margin-top: 10px;
-     display: block;
-   }
-   .btn {
-     display: inline-block;
-     margin-top: 10px;
-     background-color: #2c3e50;
-     color: white;
-     padding: 10px 20px;
-     border-radius: 8px;
-     text-decoration: none;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+     padding: 30px;
+     font-size: 1.25rem;
+     cursor: pointer;
+     transition: background 0.2s, box-shadow 0.2s;
+     text-align: center;
      font-weight: bold;
-     transition: background-color 0.3s ease;
+     text-decoration: none;
+     color: #2c3e50;
    }
-   .btn:hover {
-     background-color: #18bc9c;
-   }
+   .topic-slot:hover { background: #f0f2f5; box-shadow: 0 4px 16px rgba(0,0,0,0.09); }
+   body.dark-mode .topic-slot { background: #222426; color: #f5f5f5; }
+   body.dark-mode .topic-slot:hover { background: #181a1b; }
  </style>
 </head>
 <body>
 
-<!-- Menü Butonu -->
 <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-avatar">
     <img id="sidebar-avatar" src="https://i.ibb.co/m8V8Ndk/resim-2025-05-20-204425134.png" alt="Avatar">
@@ -166,62 +93,13 @@
   <a href="index.html">Çıkış Yap</a>
 </div>
 
-<!-- Ana İçerik -->
 <div class="main-content" id="mainContent">
-  <div id="main-sections" style="display: block;">
-    <section>
-      <h2>🎬 Ders Tanıtım Videosu</h2>
-      <video width="100%" height="300" controls>
-        <source src="avatarlar/tanıtımvideosu.mp4" type="video/mp4">
-        Tarayıcınız video etiketini desteklemiyor.
-      </video>
-   <section>
-  <h2>🎥 Ders Videosu</h2>
-  <div style="margin-bottom: 10px;">
-    <button onclick="changeVideo('avatarlar/konuanlatımı3.mp4')" class="btn" id="btn1">Video 1</button>
-    <button onclick="changeVideo('avatarlar/konuanlatımı2.mp4')" class="btn" id="btn2">Video 2</button>
-  </div>
-  <video id="mainVideo" width="100%" height="300" controls>
-    <source src="avatarlar/konuanlatımı3.mp4" type="video/mp4">
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
-</section>
-
-<script>
-  function changeVideo(src) {
-    var video = document.getElementById("mainVideo");
-    video.pause();
-    video.querySelector('source').setAttribute('src', src);
-    video.load();
-    video.play();
-  }
-</script>
-
-
-    </section>
-    <section>
-      <h2>📖 Konu Anlatımı</h2>
-      <p>
-        Bu bölümde Türk devletlerinin tarihsel gelişim süreçleri anlatılacaktır. İçeriği buraya yazabilirsiniz.
-      </p>
-      <a class="btn" href="pdf-goster.html" target="_blank">PDF'yi Görüntüle</a>
-    </section>
-    <section id="quiz-link">
-      <h2>📝 Osmanlı Quizi</h2>
-      <p>Osmanlı tarihiyle ilgili bilgini test etmek ister misin? Aşağıdaki butona tıklayarak mini quize katılabilirsin.</p>
-      <a class="btn" href="quiz.html">Quizi Başlat</a>
-    </section>
-    <section id="quiz-link">
-      <h2>Sınıf İçi Etkinlik</h2>
-      <a class="btn" href="buzkıran.html">Etkinliğe Git</a>
-    </section>
-    <section>
-      <h2>📝 Ödev Gönderme</h2>
-      <p>Lütfen PDF veya Word formatında ödevinizi yükleyin:</p>
-      <input type="file" name="homework" id="homework">
-      <input type="submit" value="Ödevi Gönder">
-    </section>
-  </div>
+  <a class="topic-slot" href="konu1.html">Konu 1</a>
+  <a class="topic-slot" href="konu2.html">Konu 2</a>
+  <a class="topic-slot" href="konu3.html">Konu 3</a>
+  <a class="topic-slot" href="konu4.html">Konu 4</a>
+  <a class="topic-slot" href="konu5.html">Konu 5</a>
+  <a class="topic-slot" href="konu6.html">Konu 6</a>
 </div>
 
 <script>
