@@ -1,0 +1,22 @@
+[
+{ "type": "boşluk", "question": "Osmanlı Devleti'nin kurucusu kimdir?", "answer": "Osman Bey" },
+{ "type": "dogruyanlis", "question": "Osmanlı Devleti 1299 yılında kurulmuştur.", "answer": "doğru" },
+{ "type": "test", "question": "Osmanlı Devleti ilk başkentini nereye kurmuştur?", "options": ["Bursa", "Edirne", "Söğüt", "İstanbul"], "answer": "Söğüt" },
+{ "type": "boşluk", "question": "Osmanlı Devleti'nin ilk sultanı kimdir?", "answer": "Osman Bey" },
+{ "type": "dogruyanlis", "question": "Orhan Gazi, Osman Bey'in oğludur.", "answer": "doğru" },
+{ "type": "test", "question": "Osmanlı Devleti'nin Bizans ile yaptığı ilk büyük savaş hangisidir?", "options": ["Koyunhisar", "Malazgirt", "Sırpsındığı", "Niğbolu"], "answer": "Koyunhisar" },
+{ "type": "boşluk", "question": "Osmanlı Devleti'nin ilk medresesi hangi şehirde kurulmuştur?", "answer": "İznik" },
+{ "type": "dogruyanlis", "question": "Osmanlılar, Anadolu Selçuklu Devleti'nden sonra ortaya çıkmıştır.", "answer": "doğru" },
+{ "type": "test", "question": "Aşağıdakilerden hangisi Osmanlı Devleti'nin beylikten devlete geçiş dönemini simgeler?", "options": ["Osman Bey dönemi", "Orhan Gazi dönemi", "Yıldırım Bayezid dönemi", "Fatih dönemi"], "answer": "Orhan Gazi dönemi" },
+{ "type": "boşluk", "question": "Osmanlı Devleti'nin ilk parası hangi padişah döneminde basılmıştır?", "answer": "Orhan Gazi" },
+{ "type": "dogruyanlis", "question": "Osmanlılar Moğol istilasından kaçan Türkmenleri topraklarına kabul etmiştir.", "answer": "doğru" },
+{ "type": "test", "question": "Aşağıdaki şehirlerden hangisi Osmanlı'nın ilk fethettiği yerler arasındadır?", "options": ["İstanbul", "Bursa", "Manisa", "Konya"], "answer": "Bursa" },
+{ "type": "boşluk", "question": "Orhan Gazi zamanında fethedilen ve başkent yapılan şehir hangisidir?", "answer": "Bursa" },
+{ "type": "dogruyanlis", "question": "Osman Bey döneminde İstanbul fethedilmiştir.", "answer": "yanlış" },
+{ "type": "test", "question": "Osmanlı’nın kuruluş yıllarında en çok mücadele ettiği devlet hangisidir?", "options": ["Bizans", "Haçlılar", "Safevîler", "Memlükler"], "answer": "Bizans" },
+{ "type": "boşluk", "question": "Osmanlı’nın ilk kadısı kimdir?", "answer": "Dursun Fakih" },
+{ "type": "dogruyanlis", "question": "Osmanlı, beylik döneminde Anadolu’daki tüm beylikleri egemenliği altına almıştır.", "answer": "yanlış" },
+{ "type": "test", "question": "Osmanlı’da ilk düzenli ordu kim zamanında kurulmuştur?", "options": ["Osman Bey", "Orhan Gazi", "Yıldırım Bayezid", "I. Murad"], "answer": "Orhan Gazi" },
+{ "type": "boşluk", "question": "Osmanlı Devleti'nin kurulduğu yer neresidir?", "answer": "Söğüt" },
+{ "type": "dogruyanlis", "question": "Osmanlılar önce Balkanları sonra Anadolu'yu fethetmiştir.", "answer": "doğru" }
+]
