@@ -83,8 +83,7 @@ cursor: pointer;
 
 <div class="navigation" id="navigation"></div>
 <div style="text-align:center">
-<button id="submitBtn" onclick="calculateResult()">Sınavı Bitir</button>
-<button onclick="previewAnswers()">Önizleme</button>
+    <button id="submitBtn" onclick="calculateResult()">Sınavı Bitir</button>
 </div>
 <div id="result"></div>
 <div id="previewAnswers"></div>
@@ -187,11 +186,6 @@ let score = Math.round((correct / totalQuestions) * 100);
 localStorage.setItem('puan', score);
 window.location.href = 'sonuc.html';
 }
-
-function previewAnswers() {
-window.open('onizleme.html', '_blank');
-}
-
 </script>
 </body>
 </html>
