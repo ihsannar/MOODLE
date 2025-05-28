@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Sınav Sonucu</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+text-align: center;
+padding: 50px;
+}
+.result-box {
+background: #fff;
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+display: inline-block;
+max-width: 400px;
+}
+.score {
+font-size: 24px;
+font-weight: bold;
+color: #28a745;
+margin-bottom: 20px;
+}
+.note {
+color: #555;
+margin-top: 20px;
+margin-bottom: 30px;
+}
+.btn {
+background-color: #007BFF;
+color: white;
+border: none;
+padding: 12px 25px;
+font-size: 16px;
+border-radius: 6px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+margin: 5px;
+}
+.btn:hover {
+background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+<div class="result-box">
+<div class="score">Puanınız: <span id="puan">Yükleniyor...</span></div>
+<div class="note">Sınav tamamlandıktan sonra cevaplar değiştirilemez.</div>
+<a href="anasayfa.html" class="btn">Anasayfaya Geri Dön</a>
+<a href="onizleme.html" class="btn">Önizleme</a>
+</div>
+
+<script>
+const score = localStorage.getItem("puan");
+document.getElementById("puan").innerText = score !== null ? score : "Bilinmiyor";
+</script>
+</body>
+</html>
