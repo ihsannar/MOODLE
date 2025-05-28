@@ -72,24 +72,38 @@
    .topic-slot:hover { background: #f0f2f5; box-shadow: 0 4px 16px rgba(0,0,0,0.09); }
    body.dark-mode .topic-slot { background: #222426; color: #f5f5f5; }
    body.dark-mode .topic-slot:hover { background: #181a1b; }
-   .evaluation-btn-wrapper {
+
+   /* Değerlendirme bölümü için yeni CSS */
+   .evaluation-section {
      width: 100%;
-     text-align: center;
-     margin: 40px 0 10px 0;
+     margin: 64px 0 0 0;
+     padding: 42px 0 48px 0;
+     background: #fff;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 18px 18px 0 0;
+     box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+   }
+   body.dark-mode .evaluation-section {
+     background: #202325;
+     color: #f5f5f5;
+     box-shadow: 0 -2px 14px rgba(0,0,0,0.18);
    }
    .evaluation-btn {
      display: inline-block;
-     padding: 13px 38px;
+     padding: 16px 46px;
      background: #28a745;
      color: #fff;
      border: none;
-     border-radius: 6px;
-     font-size: 1.15rem;
+     border-radius: 9px;
+     font-size: 1.2rem;
      font-weight: bold;
      text-decoration: none;
-     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+     box-shadow: 0 2px 8px rgba(0,0,0,0.09);
      transition: background 0.2s;
      cursor: pointer;
+     margin-top: 16px;
    }
    .evaluation-btn:hover {
      background: #218838;
@@ -121,14 +135,16 @@
   <a class="topic-slot" href="konu2.html">Konu 2</a>
   <a class="topic-slot" href="konu3.html">Konu 3</a>
   <a class="topic-slot" href="konu4.html">Konu 4</a>
-  <a class="topic-slot" href="konu5.html">Konu 5</a>
-  <a class="topic-slot" href="konu6.html">Konu 6</a>
-</div>
 
-<div class="evaluation-btn-wrapper">
-  <a href="degerlendirme.html" class="evaluation-btn">
-    Değerlendirme Sayfasına Git
-  </a>
+  <!-- En alt, ortalanmış değerlendirme bölümü -->
+  <section class="evaluation-section" style="margin-top:32px;">
+    <div style="font-size:1.3rem; font-weight:600; margin-bottom:18px;">
+      Dersle ilgili görüşlerini iletmek veya genel değerlendirme yapmak için:
+    </div>
+    <a href="degerlendirme.html" class="evaluation-btn">
+      Değerlendirme Sayfasına Git
+    </a>
+  </section>
 </div>
 
 <script>
