@@ -1,0 +1,49 @@
+<section>
+  <h2>📝 Eğitim ve Site Değerlendirme Anketi</h2>
+  <form id="feedbackForm">
+    <div style="margin-bottom: 20px;">
+      <label for="memnuniyet">1) Siteden genel olarak memnun musunuz?</label><br>
+      <textarea id="memnuniyet" name="memnuniyet" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label for="degisim">2) Eğitimde neyi değiştirmek isterdiniz?</label><br>
+      <textarea id="degisim" name="degisim" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label for="eniyi">3) Sence sitenin en iyi/hoşuna giden yönü ne?</label><br>
+      <textarea id="eniyi" name="eniyi" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label for="eksik">4) Eksik bulduğun veya eklenmesini istediğin bir şey var mı?</label><br>
+      <textarea id="eksik" name="eksik" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+    </div>
+    <button type="button" class="btn" onclick="submitFeedback()">Gönder</button>
+  </form>
+  <div id="feedbackResult" style="margin-top: 20px; font-weight: bold;"></div>
+</section>
+
+<script>
+function submitFeedback() {
+  // Burada backend'e kaydedebilirsin, şimdilik ekranda gösteriyor
+  const memnuniyet = document.getElementById('memnuniyet').value.trim();
+  const degisim = document.getElementById('degisim').value.trim();
+  const eniyi = document.getElementById('eniyi').value.trim();
+  const eksik = document.getElementById('eksik').value.trim();
+
+  if (!memnuniyet && !degisim && !eniyi && !eksik) {
+    document.getElementById('feedbackResult').innerText = "Lütfen en az bir soruya cevap yazın.";
+    return;
+  }
+  document.getElementById('feedbackForm').style.display = 'none';
+  document.getElementById('feedbackResult').innerHTML = `
+    Yanıtlarınız alındı, teşekkürler!<br><br>
+    <strong>Yanıtlarınız:</strong><br>
+    <ul>
+      <li><b>1)</b> ${memnuniyet || "-"} </li>
+      <li><b>2)</b> ${degisim || "-"} </li>
+      <li><b>3)</b> ${eniyi || "-"} </li>
+      <li><b>4)</b> ${eksik || "-"} </li>
+    </ul>
+  `;
+}
+</script>
