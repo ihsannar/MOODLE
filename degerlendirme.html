@@ -3,50 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eğitim ve Site Değerlendirme Anketi</title>
+  <title>Eğitim Değerlendirme Anketi</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f0f2f5;
+      margin: 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    .main-content {
-      max-width: 600px;
-      margin: 60px auto 30px auto;
-      padding: 30px;
+    .form-container {
       background: #fff;
+      max-width: 570px;
+      margin: 60px auto 30px auto;
+      padding: 32px 28px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.10);
     }
     h2 {
       text-align: center;
       color: #2c3e50;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
-    label {
+    .soru {
+      margin-bottom: 24px;
+    }
+    .soru label {
       font-weight: bold;
       color: #2c3e50;
-      margin-bottom: 8px;
       display: block;
+      margin-bottom: 10px;
+    }
+    .soru .options {
+      margin-left: 10px;
+      margin-bottom: 8px;
+    }
+    .soru .options label {
+      font-weight: normal;
+      margin-right: 18px;
+      color: #2c3e50;
+      cursor: pointer;
     }
     textarea {
       width: 100%;
       padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      resize: vertical;
+      border-radius: 7px;
+      border: 1px solid #bbb;
+      min-height: 65px;
       margin-top: 6px;
+      resize: vertical;
     }
     .btn {
-      display: inline-block;
-      margin-top: 18px;
       background-color: #2c3e50;
       color: white;
       padding: 10px 28px;
@@ -55,79 +63,120 @@
       font-weight: bold;
       border: none;
       font-size: 15px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
       cursor: pointer;
+      margin-top: 18px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     .btn:hover {
       background-color: #18bc9c;
     }
-    #feedbackResult {
-      margin-top: 20px;
+    .result {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 17px;
       font-weight: bold;
       color: #2c3e50;
-      text-align: center;
     }
     .footer-btn {
       width: 100%;
       text-align: center;
-      margin-top: 30px;
-      margin-bottom: 20px;
+      margin-top: 35px;
+      margin-bottom: 22px;
     }
     @media (max-width: 700px) {
-      .main-content {
+      .form-container {
         max-width: 97vw;
-        padding: 15px;
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="main-content">
-    <h2>📝 Eğitim ve Site Değerlendirme Anketi</h2>
-    <form id="feedbackForm">
-      <div style="margin-bottom: 20px;">
-        <label for="memnuniyet">1) Siteden genel olarak memnun musunuz?</label>
-        <textarea id="memnuniyet" name="memnuniyet" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+  <div class="form-container">
+    <h2>📝 Eğitim Değerlendirme Anketi</h2>
+    <form id="degerlendirmeForm">
+      <div class="soru">
+        <label>1) Eğitimden genel olarak memnun kaldınız mı?</label>
+        <div class="options">
+          <label><input type="radio" name="memnuniyet" value="Evet"> Evet</label>
+          <label><input type="radio" name="memnuniyet" value="Kısmen"> Kısmen</label>
+          <label><input type="radio" name="memnuniyet" value="Hayır"> Hayır</label>
+        </div>
       </div>
-      <div style="margin-bottom: 20px;">
-        <label for="degisim">2) Eğitimde neyi değiştirmek isterdiniz?</label>
-        <textarea id="degisim" name="degisim" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+      <div class="soru">
+        <label>2) Konu başlıkları ve içerik birbiriyle uyumlu muydu?</label>
+        <div class="options">
+          <label><input type="radio" name="uyum" value="Evet"> Evet</label>
+          <label><input type="radio" name="uyum" value="Kısmen"> Kısmen</label>
+          <label><input type="radio" name="uyum" value="Hayır"> Hayır</label>
+        </div>
       </div>
-      <div style="margin-bottom: 20px;">
-        <label for="eniyi">3) Sence sitenin en iyi/hoşuna giden yönü ne?</label>
-        <textarea id="eniyi" name="eniyi" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+      <div class="soru">
+        <label>3) Verilen ödevler, kazanımları kavramanıza yardımcı oldu mu?</label>
+        <div class="options">
+          <label><input type="radio" name="odev" value="Evet"> Evet</label>
+          <label><input type="radio" name="odev" value="Kısmen"> Kısmen</label>
+          <label><input type="radio" name="odev" value="Hayır"> Hayır</label>
+        </div>
       </div>
-      <div style="margin-bottom: 20px;">
-        <label for="eksik">4) Eksik bulduğun veya eklenmesini istediğin bir şey var mı?</label>
-        <textarea id="eksik" name="eksik" rows="3" placeholder="Görüşünüzü yazın..."></textarea>
+      <div class="soru">
+        <label>4) Derslerin işleniş şekli anlaşılır mıydı?</label>
+        <div class="options">
+          <label><input type="radio" name="islenis" value="Evet"> Evet</label>
+          <label><input type="radio" name="islenis" value="Kısmen"> Kısmen</label>
+          <label><input type="radio" name="islenis" value="Hayır"> Hayır</label>
+        </div>
       </div>
-      <button type="button" class="btn" onclick="submitFeedback()">Gönder</button>
+      <div class="soru">
+        <label>5) Katılım ve etkileşim açısından yeterli buldunuz mu?</label>
+        <div class="options">
+          <label><input type="radio" name="katilim" value="Evet"> Evet</label>
+          <label><input type="radio" name="katilim" value="Kısmen"> Kısmen</label>
+          <label><input type="radio" name="katilim" value="Hayır"> Hayır</label>
+        </div>
+      </div>
+      <div class="soru">
+        <label>6) Eksik bulduğunuz ya da geliştirilmesi gereken bir konu var mı?</label>
+        <textarea name="eksik" id="eksik" placeholder="Buraya yazabilirsiniz..."></textarea>
+      </div>
+      <div class="soru">
+        <label>7) Genel görüş ve önerileriniz:</label>
+        <textarea name="yorum" id="yorum" placeholder="Eklemek istediğiniz başka bir yorum..."></textarea>
+      </div>
+      <button type="button" class="btn" onclick="submitSurvey()">Gönder</button>
     </form>
-    <div id="feedbackResult"></div>
+    <div class="result" id="surveyResult"></div>
     <div class="footer-btn">
       <a href="anasayfa.html" class="btn">Anasayfaya Dön</a>
     </div>
   </div>
   <script>
-    function submitFeedback() {
-      const memnuniyet = document.getElementById('memnuniyet').value.trim();
-      const degisim = document.getElementById('degisim').value.trim();
-      const eniyi = document.getElementById('eniyi').value.trim();
-      const eksik = document.getElementById('eksik').value.trim();
-      if (!memnuniyet && !degisim && !eniyi && !eksik) {
-        document.getElementById('feedbackResult').innerText = "Lütfen en az bir soruya cevap yazın.";
+    function submitSurvey() {
+      const memnuniyet = document.querySelector('input[name="memnuniyet"]:checked');
+      const uyum = document.querySelector('input[name="uyum"]:checked');
+      const odev = document.querySelector('input[name="odev"]:checked');
+      const islenis = document.querySelector('input[name="islenis"]:checked');
+      const katilim = document.querySelector('input[name="katilim"]:checked');
+      const eksik = document.getElementById("eksik").value.trim();
+      const yorum = document.getElementById("yorum").value.trim();
+
+      if (!memnuniyet || !uyum || !odev || !islenis || !katilim) {
+        document.getElementById('surveyResult').innerText = "Lütfen tüm soruları işaretleyin.";
         return;
       }
-      document.getElementById('feedbackForm').style.display = 'none';
-      document.getElementById('feedbackResult').innerHTML = `
-        Yanıtlarınız alındı, teşekkürler!<br><br>
-        <strong>Yanıtlarınız:</strong><br>
-        <ul style="text-align:left">
-          <li><b>1)</b> ${memnuniyet || "-"} </li>
-          <li><b>2)</b> ${degisim || "-"} </li>
-          <li><b>3)</b> ${eniyi || "-"} </li>
-          <li><b>4)</b> ${eksik || "-"} </li>
-        </ul>
+      document.getElementById('degerlendirmeForm').style.display = 'none';
+      document.getElementById('surveyResult').innerHTML = `
+        <div>Yanıtlarınız alınmıştır. Teşekkürler!</div><br>
+        <b>Memnuniyet:</b> ${memnuniyet.value}<br>
+        <b>İçerik Uyum:</b> ${uyum.value}<br>
+        <b>Ödev-Kazanım:</b> ${odev.value}<br>
+        <b>Ders İşlenişi:</b> ${islenis.value}<br>
+        <b>Katılım:</b> ${katilim.value}<br>
+        <b>Eksik/Geliştirilecek:</b> ${eksik ? eksik : "-"}<br>
+        <b>Genel Yorum:</b> ${yorum ? yorum : "-"}
       `;
     }
   </script>
